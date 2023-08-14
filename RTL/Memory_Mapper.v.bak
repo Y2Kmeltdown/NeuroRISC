@@ -1,0 +1,56 @@
+module Memory_Mapper
+(
+	#(
+	parameter instr_mem_size = 87,
+	parameter data_mem_size = 100,
+	parameter io_data_size = 5
+	)
+	input					clk,
+	input					reset,
+	
+	// Processor Bus
+	input		[31:0]	proc_data_in,
+	input		[31:0]	proc_data_addr,
+	input					data_wren,
+	
+	output	[31:0]	proc_data_out,
+	
+	output				mem_wait,
+	
+	// IO Bus
+	input		[31:0]	IO_data_in,
+	
+	output				IO_data_en,
+	output	[31:0]	IO_data_addr,
+	output	[31:0]	IO_data_out,
+	
+	// Data Memory Bus
+	input		[31:0]	mem_data_in,
+	
+	output				mem_data_en,
+	output	[31:0]	mem_data_addr,
+	output	[31:0]	mem_data_out,
+	
+	// Instr Memory Bus
+	
+	input		[31:0]	mem_instr_in,
+	
+	output				mem_instr_en,
+	output	[31:0]	mem_instr_addr,
+	output	[31:0]	mem_instr_out,
+	
+	// Instr Load Bus
+	
+	input		[31:0]	ld_instr_in,
+	input		[31:0]	ld_instr_addr,
+	input					ld_instr_en,
+	input					ld_instr_active
+);
+
+	parameter s_PROC = 3'b000;
+	parameter s_LD_INSTR = 3'b001;
+	
+	reg [2:0] r_SM_MAIN;
+	
+
+endmodule 

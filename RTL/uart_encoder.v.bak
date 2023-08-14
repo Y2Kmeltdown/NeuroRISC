@@ -1,0 +1,24 @@
+module uart_encoder
+(
+	input					clk,
+	input					rst,
+	input 	[7:0]		i_uart_byte,
+	input		[11:0]	i_FIFO_usedw,
+	input					i_FIFO_empty,
+	input					i_FIFO_full,
+	
+	output				o_FIFO_rdreq,
+	output	[31:0]	o_proc_data,
+	output	[31:0]	o_proc_addr
+);
+
+parameter 	s_IDLE;
+parameter	s_
+
+
+always @(posedge clk or posedge rst)
+	begin
+		
+	end
+
+endmodule 

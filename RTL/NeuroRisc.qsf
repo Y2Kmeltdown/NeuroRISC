@@ -1,0 +1,568 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2018  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+# Date created = 13:49:43  May 22, 2023
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		NeuroRisc_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CSEBA6U23I7
+set_global_assignment -name TOP_LEVEL_ENTITY NeuroRisc_Processor
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "13:49:43  MAY 22, 2023"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP "-40"
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH NeuroRisc_tb -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME NeuroRisc_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id NeuroRisc_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME NeuroRisc_tb -section_id NeuroRisc_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE NeuroRisc_tb.v -section_id NeuroRisc_tb
+set_location_assignment PIN_V11 -to clk
+set_location_assignment PIN_AH17 -to reset
+set_location_assignment PIN_AG21 -to clock_pin
+set_location_assignment PIN_AA24 -to LED1
+set_location_assignment PIN_V16 -to LED2
+set_location_assignment PIN_V15 -to LED3
+set_location_assignment PIN_AF26 -to LED4
+set_location_assignment PIN_AE26 -to LED5
+set_location_assignment PIN_AF28 -to Test_Pin2
+set_location_assignment PIN_AF27 -to Test_Pin3
+set_location_assignment PIN_AH27 -to Test_Pin4
+set_location_assignment PIN_AH26 -to Test_Pin5
+set_location_assignment PIN_Y24 -to switch0
+set_location_assignment PIN_W24 -to switch1
+set_location_assignment PIN_W21 -to switch2
+set_location_assignment PIN_W20 -to switch3
+set_location_assignment PIN_Y16 -to LED6
+set_location_assignment PIN_AA23 -to LED7
+set_location_assignment PIN_AF25 -to Test_Pin6
+set_location_assignment PIN_W15 -to LED0
+set_location_assignment PIN_AC24 -to Test_Pin0
+set_location_assignment PIN_AD26 -to Test_Pin1
+set_location_assignment PIN_AF23 -to Test_Pin7
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER LED0 -section_id LED
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER LED1 -section_id LED
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER LED2 -section_id LED
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER LED3 -section_id LED
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER LED4 -section_id LED
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER LED5 -section_id LED
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER LED6 -section_id LED
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER LED7 -section_id LED
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER switch0 -section_id Switches
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER switch1 -section_id Switches
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER switch2 -section_id Switches
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER switch3 -section_id Switches
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER Test_Pin0 -section_id Test_Pins
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER Test_Pin1 -section_id Test_Pins
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER Test_Pin2 -section_id Test_Pins
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER Test_Pin3 -section_id Test_Pins
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER Test_Pin4 -section_id Test_Pins
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER Test_Pin5 -section_id Test_Pins
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER Test_Pin6 -section_id Test_Pins
+set_global_assignment -name ASSIGNMENT_GROUP_MEMBER Test_Pin7 -section_id Test_Pins
+set_global_assignment -name ENABLE_SIGNALTAP ON
+set_global_assignment -name USE_SIGNALTAP_FILE testSignalTap.stp
+set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_BLOCK_TYPE=AUTO" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334528" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INCREMENTAL_ROUTING=1" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[20] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_PIPELINE=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_PIPELINE=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_COUNTER_PIPELINE=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[23] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to clk -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=8192" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=8192" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[9] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[7] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[64] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|control_fsm:b2v_inst12|A_lt_B" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[0] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[8] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[2] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[21] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[22] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[23] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[24] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[25] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[26] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[27] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[28] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[29] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[30] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[31] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_A|result[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[32] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[33] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[34] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[35] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[36] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[37] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[38] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[39] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[40] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[41] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[42] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[43] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[44] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[45] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[46] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[47] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[48] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[49] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[50] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[51] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[52] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[53] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[54] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[55] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[56] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[57] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[58] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[59] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[60] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[61] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[62] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[63] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|TwoPortMux:b2v_ALU_B|result[9]" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[1] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[65] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|control_fsm:b2v_inst12|opcode[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[66] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|control_fsm:b2v_inst12|opcode[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[67] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|control_fsm:b2v_inst12|opcode[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[68] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|control_fsm:b2v_inst12|opcode[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[69] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|control_fsm:b2v_inst12|opcode[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[70] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|control_fsm:b2v_inst12|opcode[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[71] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|control_fsm:b2v_inst12|opcode[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[72] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[73] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[74] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[75] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[76] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[77] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[78] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[79] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[80] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[81] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[82] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[83] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[84] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[85] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[86] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[87] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[88] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[89] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[90] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[91] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[92] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[93] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[94] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[95] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[96] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[97] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[98] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[99] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[100] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[101] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[102] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[103] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[9]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[104] -to "NeuroRisc_SOC:inst|spike_in_a[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[105] -to "NeuroRisc_SOC:inst|spike_in_a[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[106] -to "NeuroRisc_SOC:inst|spike_in_a[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[107] -to "NeuroRisc_SOC:inst|spike_in_a[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[108] -to "NeuroRisc_SOC:inst|spike_in_a[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[109] -to "NeuroRisc_SOC:inst|spike_in_a[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[110] -to "NeuroRisc_SOC:inst|spike_in_a[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[111] -to "NeuroRisc_SOC:inst|spike_in_a[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[112] -to "NeuroRisc_SOC:inst|spike_in_b[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[113] -to "NeuroRisc_SOC:inst|spike_in_b[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[114] -to "NeuroRisc_SOC:inst|spike_in_b[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[115] -to "NeuroRisc_SOC:inst|spike_in_b[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[116] -to "NeuroRisc_SOC:inst|spike_in_b[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[117] -to "NeuroRisc_SOC:inst|spike_in_b[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[118] -to "NeuroRisc_SOC:inst|spike_in_b[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[119] -to "NeuroRisc_SOC:inst|spike_in_b[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[120] -to "NeuroRisc_SOC:inst|spike_in_c[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[121] -to "NeuroRisc_SOC:inst|spike_in_c[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[122] -to "NeuroRisc_SOC:inst|spike_in_c[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[123] -to "NeuroRisc_SOC:inst|spike_in_c[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[124] -to "NeuroRisc_SOC:inst|spike_in_c[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[125] -to "NeuroRisc_SOC:inst|spike_in_c[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[126] -to "NeuroRisc_SOC:inst|spike_in_c[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[127] -to "NeuroRisc_SOC:inst|spike_in_c[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[128] -to "NeuroRisc_SOC:inst|spike_in_d[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[129] -to "NeuroRisc_SOC:inst|spike_in_d[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[130] -to "NeuroRisc_SOC:inst|spike_in_d[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[131] -to "NeuroRisc_SOC:inst|spike_in_d[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[132] -to "NeuroRisc_SOC:inst|spike_in_d[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[133] -to "NeuroRisc_SOC:inst|spike_in_d[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[134] -to "NeuroRisc_SOC:inst|spike_in_d[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[135] -to "NeuroRisc_SOC:inst|spike_in_d[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[136] -to "NeuroRisc_SOC:inst|spike_out[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[137] -to "NeuroRisc_SOC:inst|spike_out[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[138] -to "NeuroRisc_SOC:inst|spike_out[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[139] -to "NeuroRisc_SOC:inst|spike_out[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[140] -to "NeuroRisc_SOC:inst|spike_out[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[141] -to "NeuroRisc_SOC:inst|spike_out[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[142] -to "NeuroRisc_SOC:inst|spike_out[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[143] -to "NeuroRisc_SOC:inst|spike_out[7]" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=144" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_BITS=144" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[22] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_location_assignment PIN_AE22 -to rx_pin
+set_location_assignment PIN_AF21 -to tx_pin
+set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to clk -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_BLOCK_TYPE=AUTO" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334529" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INCREMENTAL_ROUTING=1" -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to uart_signalTap|gnd -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[17] -to uart_signalTap|vcc -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[18] -to uart_signalTap|vcc -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to uart_signalTap|gnd -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_PIPELINE=0" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_PIPELINE=0" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_COUNTER_PIPELINE=0" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[1] -to uart_signalTap|vcc -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to uart_signalTap|vcc -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[5] -to uart_signalTap|vcc -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to uart_signalTap|gnd -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to uart_signalTap|vcc -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=1" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=0000000000000000000000000" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=25" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=2048" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=2048" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[10]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[11]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[3] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[12]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[4] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[13]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[5] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[14]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[6] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[15]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[7] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[16]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[8] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[17]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[9] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[18]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[10] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[19]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[11] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[12] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[20]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[13] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[21]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[14] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[22]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[15] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[23]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[16] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[24]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[17] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[25]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[18] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[26]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[19] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[27]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[20] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[28]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[21] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[29]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[22] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[23] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[30]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[24] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[31]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[25] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[26] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[27] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[28] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[29] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[30] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[8]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[31] -to "NeuroRisc_SOC:inst|NeuroRisc:b2v_inst|programCounter:b2v_inst4|pc[9]" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=32" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=000000000000000000000000000" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=27" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[5] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[11] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[16] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[17] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[18] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[19] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[21] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[26] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[28] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=sld_reserved_NeuroRisc_auto_signaltap_0_1_fd2b," -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=1" -section_id auto_signaltap_0
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[22] -to uart_signalTap|gnd -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to uart_signalTap|vcc -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[21] -to uart_signalTap|gnd -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to "uartFIFO:inst|usedw[0]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to "uartFIFO:inst|usedw[10]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to "uartFIFO:inst|usedw[11]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[21] -to "uartFIFO:inst|usedw[1]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[22] -to "uartFIFO:inst|usedw[2]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[23] -to "uartFIFO:inst|usedw[3]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[24] -to "uartFIFO:inst|usedw[4]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[25] -to "uartFIFO:inst|usedw[5]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[26] -to "uartFIFO:inst|usedw[6]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[27] -to "uartFIFO:inst|usedw[7]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[28] -to "uartFIFO:inst|usedw[8]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[29] -to "uartFIFO:inst|usedw[9]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[30] -to "uartFIFO:inst|wrreq" -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[16] -to uart_signalTap|vcc -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[20] -to uart_signalTap|vcc -section_id uart_signalTap
+set_location_assignment PIN_AH16 -to Button_Pin
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to "uartFIFO:inst|data[0]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to "uartFIFO:inst|data[1]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to "uartFIFO:inst|data[2]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to "uartFIFO:inst|data[3]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to "uartFIFO:inst|data[4]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to "uartFIFO:inst|data[5]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to "uartFIFO:inst|data[6]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to "uartFIFO:inst|data[7]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to "uartFIFO:inst|empty" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to "uartFIFO:inst|q[0]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to "uartFIFO:inst|q[1]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to "uartFIFO:inst|q[2]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to "uartFIFO:inst|q[3]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to "uartFIFO:inst|q[4]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to "uartFIFO:inst|q[5]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to "uartFIFO:inst|q[6]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to "uartFIFO:inst|q[7]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to "uartFIFO:inst|rdreq" -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[8] -to uart_signalTap|vcc -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[31] -to "uart_encoder:inst6|o_error" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[32] -to "uart_encoder:inst6|o_proc_addr[0]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[33] -to "uart_encoder:inst6|o_proc_addr[10]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[34] -to "uart_encoder:inst6|o_proc_addr[11]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[35] -to "uart_encoder:inst6|o_proc_addr[12]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[36] -to "uart_encoder:inst6|o_proc_addr[13]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[37] -to "uart_encoder:inst6|o_proc_addr[14]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[38] -to "uart_encoder:inst6|o_proc_addr[15]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[39] -to "uart_encoder:inst6|o_proc_addr[16]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[40] -to "uart_encoder:inst6|o_proc_addr[17]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[41] -to "uart_encoder:inst6|o_proc_addr[18]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[42] -to "uart_encoder:inst6|o_proc_addr[19]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[43] -to "uart_encoder:inst6|o_proc_addr[1]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[44] -to "uart_encoder:inst6|o_proc_addr[20]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[45] -to "uart_encoder:inst6|o_proc_addr[21]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[46] -to "uart_encoder:inst6|o_proc_addr[22]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[47] -to "uart_encoder:inst6|o_proc_addr[23]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[48] -to "uart_encoder:inst6|o_proc_addr[24]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[49] -to "uart_encoder:inst6|o_proc_addr[25]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[50] -to "uart_encoder:inst6|o_proc_addr[26]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[51] -to "uart_encoder:inst6|o_proc_addr[27]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[52] -to "uart_encoder:inst6|o_proc_addr[28]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[53] -to "uart_encoder:inst6|o_proc_addr[29]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[54] -to "uart_encoder:inst6|o_proc_addr[2]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[55] -to "uart_encoder:inst6|o_proc_addr[30]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[56] -to "uart_encoder:inst6|o_proc_addr[31]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[57] -to "uart_encoder:inst6|o_proc_addr[3]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[58] -to "uart_encoder:inst6|o_proc_addr[4]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[59] -to "uart_encoder:inst6|o_proc_addr[5]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[60] -to "uart_encoder:inst6|o_proc_addr[6]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[61] -to "uart_encoder:inst6|o_proc_addr[7]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[62] -to "uart_encoder:inst6|o_proc_addr[8]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[63] -to "uart_encoder:inst6|o_proc_addr[9]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[64] -to "uart_encoder:inst6|o_proc_data[0]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[65] -to "uart_encoder:inst6|o_proc_data[10]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[66] -to "uart_encoder:inst6|o_proc_data[11]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[67] -to "uart_encoder:inst6|o_proc_data[12]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[68] -to "uart_encoder:inst6|o_proc_data[13]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[69] -to "uart_encoder:inst6|o_proc_data[14]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[70] -to "uart_encoder:inst6|o_proc_data[15]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[71] -to "uart_encoder:inst6|o_proc_data[16]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[72] -to "uart_encoder:inst6|o_proc_data[17]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[73] -to "uart_encoder:inst6|o_proc_data[18]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[74] -to "uart_encoder:inst6|o_proc_data[19]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[75] -to "uart_encoder:inst6|o_proc_data[1]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[76] -to "uart_encoder:inst6|o_proc_data[20]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[77] -to "uart_encoder:inst6|o_proc_data[21]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[78] -to "uart_encoder:inst6|o_proc_data[22]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[79] -to "uart_encoder:inst6|o_proc_data[23]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[80] -to "uart_encoder:inst6|o_proc_data[24]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[81] -to "uart_encoder:inst6|o_proc_data[25]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[82] -to "uart_encoder:inst6|o_proc_data[26]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[83] -to "uart_encoder:inst6|o_proc_data[27]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[84] -to "uart_encoder:inst6|o_proc_data[28]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[85] -to "uart_encoder:inst6|o_proc_data[29]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[86] -to "uart_encoder:inst6|o_proc_data[2]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[87] -to "uart_encoder:inst6|o_proc_data[30]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[88] -to "uart_encoder:inst6|o_proc_data[31]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[89] -to "uart_encoder:inst6|o_proc_data[3]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[90] -to "uart_encoder:inst6|o_proc_data[4]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[91] -to "uart_encoder:inst6|o_proc_data[5]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[92] -to "uart_encoder:inst6|o_proc_data[6]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[93] -to "uart_encoder:inst6|o_proc_data[7]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[94] -to "uart_encoder:inst6|o_proc_data[8]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[95] -to "uart_encoder:inst6|o_proc_data[9]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[96] -to "uart_encoder:inst6|o_wren" -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[0] -to uart_signalTap|gnd -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[2] -to uart_signalTap|gnd -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to uart_signalTap|vcc -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[7] -to uart_signalTap|gnd -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[9] -to uart_signalTap|vcc -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to uart_signalTap|gnd -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[11] -to uart_signalTap|gnd -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[19] -to uart_signalTap|gnd -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[23] -to uart_signalTap|vcc -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to uart_signalTap|vcc -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[28] -to uart_signalTap|gnd -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to uart_signalTap|gnd -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to uart_signalTap|vcc -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to uart_signalTap|gnd -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[97] -to "uart_encoder:inst6|r_SM_Main.000" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[98] -to "uart_encoder:inst6|r_SM_Main.s_CLEANUP" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[99] -to "uart_encoder:inst6|r_SM_Main.s_DISPATCH_WORD" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[100] -to "uart_encoder:inst6|r_SM_Main.s_READ_HEADER" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[101] -to "uart_encoder:inst6|r_SM_Main.s_READ_WORD" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[102] -to "uart_rx:inst3|i_Rx_Serial" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[103] -to "uart_rx:inst3|o_Rx_Byte[0]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[104] -to "uart_rx:inst3|o_Rx_Byte[1]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[105] -to "uart_rx:inst3|o_Rx_Byte[2]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[106] -to "uart_rx:inst3|o_Rx_Byte[3]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[107] -to "uart_rx:inst3|o_Rx_Byte[4]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[108] -to "uart_rx:inst3|o_Rx_Byte[5]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[109] -to "uart_rx:inst3|o_Rx_Byte[6]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[110] -to "uart_rx:inst3|o_Rx_Byte[7]" -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[111] -to "uart_rx:inst3|o_Rx_DV" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=112" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_BITS=112" -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -to uart_signalTap|gnd -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to uart_signalTap|vcc -section_id uart_signalTap
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to "uart_encoder:inst6|o_wren" -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=1" -section_id uart_signalTap
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[26] -to uart_signalTap|vcc -section_id uart_signalTap
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=sld_reserved_NeuroRisc_uart_signalTap_1_8891," -section_id uart_signalTap
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VERILOG_FILE uartFIFO_bb.v
+set_global_assignment -name VERILOG_FILE uartFIFO.v
+set_global_assignment -name QIP_FILE uartFIFO.qip
+set_global_assignment -name VERILOG_FILE uart_tx.v
+set_global_assignment -name VERILOG_FILE uart_rx.v
+set_global_assignment -name BDF_FILE uart_loader.bdf
+set_global_assignment -name VERILOG_FILE uart_encoder.v
+set_global_assignment -name QIP_FILE PLL1.qip
+set_global_assignment -name SOURCE_FILE PLL1.cmp
+set_global_assignment -name VERILOG_FILE ../LFSR/xor2in.v
+set_global_assignment -name VERILOG_FILE ../LFSR/dff1.v
+set_global_assignment -name VERILOG_FILE ../LFSR/dff0.v
+set_global_assignment -name VERILOG_FILE NeuroRisc_tb.v
+set_global_assignment -name VERILOG_FILE control_fsm.v
+set_global_assignment -name VERILOG_FILE alu.v
+set_global_assignment -name VERILOG_FILE registerFile.v
+set_global_assignment -name VERILOG_FILE programCounter.v
+set_global_assignment -name QIP_FILE TwoPortMux.qip
+set_global_assignment -name QIP_FILE FourPortMux.qip
+set_global_assignment -name VERILOG_FILE memory_interface.v
+set_global_assignment -name VERILOG_FILE imm_gen.v
+set_global_assignment -name VERILOG_FILE mem_size.v
+set_global_assignment -name VERILOG_FILE instruction_reg.v
+set_global_assignment -name QIP_FILE memory.qip
+set_global_assignment -name QIP_FILE data_memory.qip
+set_global_assignment -name QIP_FILE instr_mem.qip
+set_global_assignment -name QIP_FILE data_mem.qip
+set_global_assignment -name QIP_FILE risc_multiply.qip
+set_global_assignment -name QIP_FILE risc_multiply_unsigned.qip
+set_global_assignment -name QIP_FILE risc_divide.qip
+set_global_assignment -name QIP_FILE risc_divide_unsigned.qip
+set_global_assignment -name VERILOG_FILE MDU.v
+set_global_assignment -name QIP_FILE FivePortMux.qip
+set_global_assignment -name VERILOG_FILE IODevice.v
+set_global_assignment -name VERILOG_FILE memoryController.v
+set_global_assignment -name QIP_FILE memoryControllerFIFO.qip
+set_global_assignment -name VERILOG_FILE NeuroRisc_SOC.v
+set_global_assignment -name VERILOG_FILE NeuroRisc.v
+set_global_assignment -name VERILOG_FILE ../LFSR/LFSR.v
+set_global_assignment -name BDF_FILE NeuroRisc_Processor.bdf
+set_global_assignment -name VERILOG_FILE inverter.v
+set_global_assignment -name VERILOG_FILE inputModule.v
+set_global_assignment -name VERILOG_FILE imemTB.v
+set_global_assignment -name VERILOG_FILE rightshift2.v
+set_global_assignment -name VERILOG_FILE neurorisc_fpgaTB.v
+set_global_assignment -name SIGNALTAP_FILE testSignalTap.stp
+set_global_assignment -name VERILOG_FILE Memory_Mapper.v
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name SLD_FILE db/testSignalTap_auto_stripped.stp
