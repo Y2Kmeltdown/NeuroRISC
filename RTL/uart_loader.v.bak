@@ -70,7 +70,7 @@ uart_rx	b2v_inst3(
 	.o_Rx_Error(uart_error),
 	.o_Active(uart_active),
 	.o_Rx_Byte(SYNTHESIZED_WIRE_2));
-	defparam	b2v_inst3.CLKS_PER_BIT = 435;
+	defparam	b2v_inst3.CLKS_PER_BIT = 87;
 
 
 uart_encoder	b2v_inst6(

@@ -445,14 +445,14 @@ def generateHex(machineCode:list[str], filename:pathlib.Path):
     byteString = "b'"+"".join(hexData)+"'"
     byteData = ast.literal_eval(byteString)
 
-    with open(filename.stem+".hex", "wb") as f:
+    with open(filename.stem+".bin", "wb") as f:
         f.write(byteData)
         
 
 parser = argparse.ArgumentParser(description="RISC V assembler")
 parser.add_argument("filename", metavar="f", type=str, help="Name of asm file to assemble")
 parser.add_argument("-m", "--mif", action="store_true", help="Generate MIF file")
-parser.add_argument("-r", "--raw", action="store_true", help="Generate raw hex file")
+parser.add_argument("-b", "--bin", action="store_true", help="Generate raw binary file")
 args = parser.parse_args()
 fileInput = pathlib.Path(args.filename)
 with open(fileInput) as f:
@@ -487,6 +487,5 @@ def padHex(value:int):
 if args.mif == True:
     generateMif(mCodeList, fileInput)
 
-if args.raw == True:
+if args.bin == True:
     generateHex(mCodeList, fileInput)
-

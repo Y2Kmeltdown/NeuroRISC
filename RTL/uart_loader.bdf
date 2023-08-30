@@ -251,7 +251,7 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 1040 72 1296 216)
+	(rect 1040 56 1296 200)
 	(text "uart_encoder" (rect 5 0 68 12)(font "Arial" ))
 	(text "inst6" (rect 8 128 31 140)(font "Arial" ))
 	(port
@@ -369,7 +369,7 @@ refer to the applicable agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 240 128))
 	)
-	(annotation_block (parameter)(rect 1040 216 1304 368))
+	(annotation_block (parameter)(rect 1040 200 1304 352))
 )
 (symbol
 	(rect 352 96 568 208)
@@ -393,28 +393,28 @@ refer to the applicable agreement for further details.
 		(pt 216 32)
 		(output)
 		(text "o_Rx_DV" (rect 0 0 48 12)(font "Arial" ))
-		(text "o_Rx_DV" (rect 155 27 195 39)(font "Arial" ))
+		(text "o_Rx_DV" (rect 155 27 203 39)(font "Arial" ))
 		(line (pt 216 32)(pt 200 32))
 	)
 	(port
 		(pt 216 48)
 		(output)
 		(text "o_Rx_Byte[7..0]" (rect 0 0 81 12)(font "Arial" ))
-		(text "o_Rx_Byte[7..0]" (rect 127 43 195 55)(font "Arial" ))
+		(text "o_Rx_Byte[7..0]" (rect 127 43 208 55)(font "Arial" ))
 		(line (pt 216 48)(pt 200 48)(line_width 3))
 	)
 	(port
 		(pt 216 64)
 		(output)
 		(text "o_Rx_Error" (rect 0 0 55 12)(font "Arial" ))
-		(text "o_Rx_Error" (rect 149 59 195 71)(font "Arial" ))
+		(text "o_Rx_Error" (rect 149 59 204 71)(font "Arial" ))
 		(line (pt 216 64)(pt 200 64))
 	)
 	(port
 		(pt 216 80)
 		(output)
 		(text "o_Active" (rect 0 0 43 12)(font "Arial" ))
-		(text "o_Active" (rect 159 75 195 87)(font "Arial" ))
+		(text "o_Active" (rect 159 75 202 87)(font "Arial" ))
 		(line (pt 216 80)(pt 200 80))
 	)
 	(parameter
@@ -507,82 +507,12 @@ refer to the applicable agreement for further details.
 	(pt 352 128)
 )
 (connector
-	(pt 920 128)
-	(pt 896 128)
-	(bus)
-)
-(connector
-	(pt 1016 24)
-	(pt 1016 104)
-)
-(connector
-	(pt 1016 104)
-	(pt 1040 104)
-)
-(connector
-	(pt 1312 64)
-	(pt 1312 104)
-)
-(connector
-	(pt 1312 104)
-	(pt 1296 104)
-)
-(connector
-	(pt 920 136)
-	(pt 1040 136)
-	(bus)
-)
-(connector
-	(pt 920 128)
-	(pt 920 136)
-	(bus)
-)
-(connector
-	(pt 1296 120)
-	(pt 1368 120)
-	(bus)
-)
-(connector
-	(pt 1296 136)
-	(pt 1368 136)
-	(bus)
-)
-(connector
-	(pt 1296 152)
-	(pt 1368 152)
-)
-(connector
-	(pt 1296 168)
-	(pt 1368 168)
-)
-(connector
-	(pt 1040 152)
-	(pt 896 152)
-)
-(connector
-	(pt 896 168)
-	(pt 1040 168)
-)
-(connector
-	(pt 896 184)
-	(pt 1040 184)
-	(bus)
-)
-(connector
-	(pt 1000 0)
-	(pt 1000 120)
-)
-(connector
 	(pt 216 0)
 	(pt 680 0)
 )
 (connector
 	(pt 680 0)
 	(pt 1000 0)
-)
-(connector
-	(pt 1040 120)
-	(pt 1000 120)
 )
 (connector
 	(pt 568 176)
@@ -607,6 +537,138 @@ refer to the applicable agreement for further details.
 (connector
 	(pt 584 408)
 	(pt 1368 408)
+)
+(connector
+	(pt 1368 120)
+	(pt 1360 120)
+	(bus)
+)
+(connector
+	(pt 1368 136)
+	(pt 1352 136)
+	(bus)
+)
+(connector
+	(pt 1368 152)
+	(pt 1344 152)
+)
+(connector
+	(pt 896 152)
+	(pt 904 152)
+)
+(connector
+	(pt 1368 168)
+	(pt 1336 168)
+)
+(connector
+	(pt 896 168)
+	(pt 912 168)
+)
+(connector
+	(pt 896 184)
+	(pt 920 184)
+	(bus)
+)
+(connector
+	(pt 1016 24)
+	(pt 1016 88)
+)
+(connector
+	(pt 1016 88)
+	(pt 1040 88)
+)
+(connector
+	(pt 1312 64)
+	(pt 1312 88)
+)
+(connector
+	(pt 1312 88)
+	(pt 1296 88)
+)
+(connector
+	(pt 1360 120)
+	(pt 1360 104)
+	(bus)
+)
+(connector
+	(pt 1360 104)
+	(pt 1296 104)
+	(bus)
+)
+(connector
+	(pt 1352 136)
+	(pt 1352 120)
+	(bus)
+)
+(connector
+	(pt 1352 120)
+	(pt 1296 120)
+	(bus)
+)
+(connector
+	(pt 1344 152)
+	(pt 1344 136)
+)
+(connector
+	(pt 1344 136)
+	(pt 1296 136)
+)
+(connector
+	(pt 904 152)
+	(pt 904 136)
+)
+(connector
+	(pt 904 136)
+	(pt 1040 136)
+)
+(connector
+	(pt 1336 168)
+	(pt 1336 152)
+)
+(connector
+	(pt 1336 152)
+	(pt 1296 152)
+)
+(connector
+	(pt 912 168)
+	(pt 912 152)
+)
+(connector
+	(pt 912 152)
+	(pt 1040 152)
+)
+(connector
+	(pt 920 184)
+	(pt 920 168)
+	(bus)
+)
+(connector
+	(pt 920 168)
+	(pt 1040 168)
+	(bus)
+)
+(connector
+	(pt 1000 0)
+	(pt 1000 104)
+)
+(connector
+	(pt 1000 104)
+	(pt 1040 104)
+)
+(connector
+	(pt 904 128)
+	(pt 904 120)
+	(bus)
+)
+(connector
+	(pt 896 128)
+	(pt 904 128)
+	(bus)
+)
+(connector
+	(pt 904 120)
+	(pt 1040 120)
+	(bus)
 )
 (junction (pt 304 128))
 (junction (pt 656 24))

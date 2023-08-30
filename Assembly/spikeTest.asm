@@ -2,8 +2,7 @@
     li      x26     256
 
     /* Load Routine*/
-    li 	    x18,    12  /* af1 tau*/
-    li 	    x19, 	10  /* af2 (tau-dt)*/
+    li 	    x18,    3435973836 /* alpha constant */
     li      x20,    60  /* Load threshold V*/
     li	    x21, 	0	/* Starting V0  */
     li	    x22,	1	/* Spike data  */
@@ -27,9 +26,7 @@
     add     x23,    x5,     x23 /* accumulate spike io*/
 
     /* Calculation Routine */
-    mul		x5,  	x21,	x19 /* Calculation V0step1 = V0 * (tau-dt)*/
-
-    div		x5,  	x18,	x5 /* Calculation V0step2 = V0step1 / tau */
+    mulh	x5,  	x21,	x18 /* Calculation V0step1 = V0 * (tau-dt)*/
     
     add		x21, 	x5,		x23 /* Calculation V0new = V0step2 + PSC*/
 
