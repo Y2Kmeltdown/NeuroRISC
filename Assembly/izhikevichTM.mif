@@ -1,0 +1,96 @@
+-- Copyright (C) 2018  Intel Corporation. All rights reserved.
+-- Your use of Intel Corporation's design tools, logic functions 
+-- and other software and tools, and its AMPP partner logic 
+-- functions, and any output files from any of the foregoing 
+-- (including device programming or simulation files), and any 
+-- associated documentation or information are expressly subject 
+-- to the terms and conditions of the Intel Program License 
+-- Subscription Agreement, the Intel Quartus Prime License Agreement,
+-- the Intel FPGA IP License Agreement, or other applicable license
+-- agreement, including, without limitation, that your use is for
+-- the sole purpose of programming logic devices manufactured by
+-- Intel and sold by Intel or its authorized distributors.  Please
+-- refer to the applicable agreement for further details.
+
+-- Quartus Prime generated Memory Initialization File (.mif)
+
+WIDTH=32;
+DEPTH=256;
+
+ADDRESS_RADIX=HEX;
+DATA_RADIX=HEX;
+
+CONTENT BEGIN
+	000  :   10000413;
+	001  :   30000493;
+	002  :   0a3d7937;
+	003  :   0a290913;
+	004  :   00500993;
+	005  :   08c00a13;
+	006  :   01e00a93;
+	007  :   051ebb37;
+	008  :   850b0b13;
+	009  :   00a00b93;
+	00a  :   00a00c13;
+	00b  :   00040113;
+	00c  :   00040193;
+	00d  :   00012503;
+	00e  :   00112583;
+	00f  :   00212603;
+	010  :   00312683;
+	011  :   00412703;
+	012  :   00512783;
+	013  :   00611803;
+	014  :   00612883;
+	015  :   0108d893;
+	016  :   0004a283;
+	017  :   00028633;
+	018  :   0014a283;
+	019  :   00c28633;
+	01a  :   0024a283;
+	01b  :   00c28633;
+	01c  :   0034a283;
+	01d  :   00c28633;
+	01e  :   0054af83;
+	01f  :   02a50333;
+	020  :   03231333;
+	021  :   02a983b3;
+	022  :   00730333;
+	023  :   01430333;
+	024  :   40b30333;
+	025  :   00c30333;
+	026  :   02a793b3;
+	027  :   40b383b3;
+	028  :   02e393b3;
+	029  :   00650533;
+	02a  :   007585b3;
+	02b  :   03554463;
+	02c  :   00000013;
+	02d  :   00080533;
+	02e  :   011585b3;
+	02f  :   0171a123;
+	030  :   018686b3;
+	031  :   00d1a3a3;
+	032  :   00818193;
+	033  :   fe9198e3;
+	034  :   00000013;
+	035  :   00040193;
+	036  :   00068663;
+	037  :   00000013;
+	038  :   fff68693;
+	039  :   00a12023;
+	03a  :   00b120a3;
+	03b  :   00c12123;
+	03c  :   00d121a3;
+	03d  :   00e12223;
+	03e  :   00f122a3;
+	03f  :   01089893;
+	040  :   010888b3;
+	041  :   01112323;
+	042  :   00810113;
+	043  :   f29194e3;
+	044  :   00000013;
+	045  :   00040193;
+	046  :   f21ff06f;
+	[047..FF]  :   00000000;
+END;

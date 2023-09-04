@@ -1,0 +1,15 @@
+module counter(
+	input					clk,
+	input					reset,
+	output	[31:0]	counter
+);
+
+reg	[31:0]	counter_reg;
+
+always @ (posedge clk or posedge reset) begin
+
+	if (reset) begin
+	
+	end
+
+endmodule 

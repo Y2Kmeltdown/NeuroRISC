@@ -36,13 +36,14 @@ module uart_rx
   reg				 r_Rx_Error	 = 1'b0;
    
   reg	[2:0]		 r_Parity_Check = 0;
-  reg [7:0]     r_Clock_Count = 0;
-  reg [2:0]     r_Bit_Index   = 0; //8 bits total
+  reg [8:0]     r_Clock_Count = 0;
+  reg [3:0]     r_Bit_Index   = 0; //8 bits total
   reg [7:0]     r_Rx_Byte     = 0;
   reg           r_Rx_DV       = 0;
   reg [2:0]     r_SM_Main     = 0;
+  reg [2:0]		 r_ActiveCounter = 3'd5;
   
-  assign o_Active = (r_SM_Main != s_IDLE);
+  assign o_Active = (r_SM_Main != s_IDLE || r_ActiveCounter != 3'd5);
    
   // Purpose: Double-register the incoming data.
   // This allows it to be used in the UART RX Clock Domain.
@@ -64,6 +65,9 @@ module uart_rx
             r_Rx_DV       <= 1'b0;
             r_Clock_Count <= 0;
             r_Bit_Index   <= 0;
+				
+				if (r_ActiveCounter < 5)
+					r_ActiveCounter <= r_ActiveCounter + 1;
              
             if (r_Rx_Data == 1'b0)          // Start bit detected
               r_SM_Main <= s_RX_START_BIT;
@@ -175,6 +179,7 @@ module uart_rx
             r_Rx_DV   <= 1'b0;
 				r_Rx_Error <= 1'b0;
 				r_Parity_Check <= 3'b0;
+				r_ActiveCounter <= 3'b0;
           end
          
          

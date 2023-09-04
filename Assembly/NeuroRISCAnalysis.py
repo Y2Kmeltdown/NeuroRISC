@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 
-filename = "C:\\Users\\damie\\Documents\\Coding Projects\\Verilog\\NeuroRISC\\Project Working Directory\\izhikevichIB.csv"
+filename = "C:\\Users\\damie\\Documents\\Coding Projects\\Verilog\\NeuroRISC\\Project Working Directory\\izhikevich50mhz10.csv"
 
 cur_path = os.path.dirname(__file__)
 
