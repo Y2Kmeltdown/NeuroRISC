@@ -85,7 +85,24 @@
     add     x10,    x16,    x0 /* reset V to c */
     add     x11,    x11,    x17 /* increment U by d */
 
-    /* spike emission routine | 7 Instructions */
+    /* spike emission routine | 7 Instructions  TODO ADD Synapse testing*/
+    /* Count up neurons */
+    /* addi xSP, x0, 1 Initialise 1 into temporary register*/
+    /* addi xC, x0, 0 Initialise counter*/
+    /* addi xCE, x0, 32 Initialise end of counter*/
+    /* bge  xC, xCE, 12 Skip next three instructions if counter is greater than 32*/
+
+    /* and xS1, xS1, xSP  and operation of the spike output reg 1 to check if the first digit is 1*/
+    /* srli xS1, xN, 1 Shift output reg 1 right by 1*/
+    /* addi xC, xC, 1 Add 1 to counter */
+    /* beq xN, x0, 24 skip spike storage if and operation results in 0*/
+    /* j    16  skip spike output check second sub routine*/
+
+    /* and xS2, xS2, xSP  and operation of the spike output reg 1 to check if the first digit is 1*/
+    /* srli xS2, xN, 1 Shift output reg 1 right by 1*/
+    /* addi xC, xC, 1 Add 1 to counter */
+    /* beq xN, x0, 12 skip spike storage if and operation results in 0*/
+    
     sw      x23,    2(x3) /* store current injection value */
     add     x13,    x13,    x24 /* add time injection into current time */
     sw      x13,    7(x3) /* store time value */
