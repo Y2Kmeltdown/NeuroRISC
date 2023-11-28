@@ -14,8 +14,9 @@
     /* Memory Pointer initialization routine | 2 Instructions*/
     addi      x2,   x8,    0       /* Load initial memory pointer location */
     addi      x3,   x8,    0       /* Load initial memory pointer location */
+    addi      x4,   x8,    0       /* Load initial synapse pointer location */
     
-    /* Spiking neuron load routine | 9 instructions */
+    /* Spiking neuron load routine | 11 instructions  modify this to load synapse variables  at execution time of synapse calculations*/
     lw      x10,    0(x2)   /* load V */
     lw      x11,    1(x2)   /* load U */
     lw      x12,    2(x2)   /* load I */
@@ -26,6 +27,9 @@
     lh      x16,    6(x2)   /* load c */
     lw      x17,    6(x2)   /* load d & c */
     srai    x17,    x17,    16  /* right shift d & c to remove c and complete d load */
+
+    /*lw      x25,    7(x2)   /* load synapse A */
+    /*lw      x26,    8(x2)   /* load synapse B */
     
 
 
@@ -85,31 +89,60 @@
     add     x10,    x16,    x0 /* reset V to c */
     add     x11,    x11,    x17 /* increment U by d */
 
-    /* spike emission routine | 7 Instructions  TODO ADD Synapse testing*/
-    /* Count up neurons */
-    /* addi xSP, x0, 1 Initialise 1 into temporary register*/
-    /* addi xC, x0, 0 Initialise counter*/
-    /* addi xCE, x0, 32 Initialise end of counter*/
-    /* bge  xC, xCE, 12 Skip next three instructions if counter is greater than 32*/
 
-    /* and xS1, xS1, xSP  and operation of the spike output reg 1 to check if the first digit is 1*/
-    /* srli xS1, xN, 1 Shift output reg 1 right by 1*/
-    /* addi xC, xC, 1 Add 1 to counter */
-    /* beq xN, x0, 24 skip spike storage if and operation results in 0*/
-    /* j    16  skip spike output check second sub routine*/
 
-    /* and xS2, xS2, xSP  and operation of the spike output reg 1 to check if the first digit is 1*/
-    /* srli xS2, xN, 1 Shift output reg 1 right by 1*/
-    /* addi xC, xC, 1 Add 1 to counter */
-    /* beq xN, x0, 12 skip spike storage if and operation results in 0*/
+    /* spike emission routine | 39 Instructions  Load neuron synapse variables here and overwrite a b c and d*/
+    /* Count up neurons TODO sort out jump lengths*/
+    /* TODO automate synapse register changing */
+    addi x5, x0, 1     /* Initialise 1(spike) into temporary register*/
+    addi x6, x0, 0      /*Initialise counter*/
+    addi x7, x0, 32    /*Initialise end of counter*/
+    addi x28, x0, 0    /* Initialise register counter */
     
-    sw      x23,    2(x3) /* store current injection value */
+
+    lw   x14,   7(x4)   /* Load synapse data */
+    bge  x6, x7, 16    /* Go to register counter incrementer TODO change jump range to bottom of routine*/
+    nop
+    j   16
+    nop
+    addi x4, x4, 1 /* add 1 to register counter */
+    addi x28, x28, 1 /* add 1 to synapse pointer */
+    
+    and x30, x14, x5 /* and operation of the spike output reg 1 to check if the first digit is 1*/
+    srli x14, x14, 1  /* Shift output reg 1 right by 1*/
+    addi x6, x6, 1  /* Add 1 to counter */
+    beq x30, x0, 24  /* skip spike storage if and operation results in 0*/
+    nop
+
+    addi x29, x0, 2 /* set a check register to compare against register counter */
+    blt x28, x29, 12/*branch if counter less than 2 set excitatory or inhibitory*/
+    nop
+    addi x15, x0, 0 /* set excitatory synapse */
+    j       4
+    nop
+    addi x15, x0, 1 /* set inhibitory synapse */
+
+    addi x29, x0, 5 /* set a check register to compare against register counter */
+    bge  x28, x29, 4 /* branch if counter is greater than or equal to 5 this will show all register values have been cycled through */
+    nop
+    
+    beq     x15,    x0,     20
+    nop
+    sub     x31,    x0,     x23
+    j       12
+    nop
+    add     x31,    x0,     x23
+    sw      x31,    2(x3) /* store current injection value */
+
     add     x13,    x13,    x24 /* add time injection into current time */
     sw      x13,    7(x3) /* store time value */
     addi    x3,     x3,     8 /* increment spike memory pointer by 8 */
-    bne     x3,     x9,     -16 /* branch back to start of spike emission routine if memory pointer does not equal end of memory */
+    bne     x3,     x9,     -132 /* branch back to start of spike emission routine if memory pointer does not equal end of memory */
     nop
     addi    x3,     x8,     0       /* reset initial memory pointer location */
+
+    
+    
     
     /* Spike Store Routine | 12 Instructions */
     beq     x13,    x0,     12 /* check if x13 is zero */
@@ -128,7 +161,7 @@
     sw      x17,    6(x2)   /* store c & d */
 
     /* Change neuron routine | 4 Instructions */
-    addi    x2,     x2,     8 /* increment spike memory pointer by 8 */
+    addi    x2,     x2,     16 /* increment spike memory pointer by 8 */
     bne     x3,     x9,     -216 /* branch back to start of spike emission routine if memory pointer does not equal end of memory */
     nop
     addi    x3,     x8,     0       /* reset initial memory pointer location */
