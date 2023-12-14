@@ -29,10 +29,87 @@ def generateMif(machineCode:list[str], filename:pathlib.Path):
     with open(filename.stem + ".mif", 'w') as f:
         f.write(''.join(outputList))
 
-def normalised32Bit(num):
-    print(int(num*(pow(2,32))-1))
+def normalised32Bit(num:float):
+    return int(num*(pow(2,32))-1)
+
+class neuronGroup:
+    pass
+
+class neuron:
+    excitatoryConnections = []
+    inhibitoryConnections = []
+    def __init__(self, 
+                 index = 0, 
+                 V = 0, 
+                 U = 0, 
+                 I = 0, 
+                 t = 0, 
+                 a = 0, 
+                 b = 0, 
+                 c = 0, 
+                 d = 0):
+        pass
+
+    def set_index(self, value):
+        self.index = value
+    def get_index(self):
+        return self.index
+    
+    def set_voltage(self, value):
+        self.voltage = value
+    def get_voltage(self):
+        return self.voltage
+    
+    def set_uVal(self, value):
+        self.uVal = value
+    def get_uVal(self):
+        return self.uVal
+    
+    def set_current(self, value):
+        self.current = value
+    def get_current(self):
+        return self.current
+    
+    def set_time(self, value):
+        self.time = value
+    def get_time(self):
+        return self.time
+    
+    def set_alpha(self, value):
+        self.alpha = value
+    def get_alpha(self):
+        return self.alpha
+    
+    def set_bravo(self, value):
+        self.bravo = value
+    def get_bravo(self):
+        return self.bravo
+    
+    def set_charlie(self, value):
+        self.charlie = value
+    def get_charlie(self):
+        return self.charlie
+    
+    def set_delta(self, value):
+        self.delta = value
+    def get_delta(self):
+        return self.delta
+    
+
+
+    def connect_inhibitory_synapse(self, neurons:list):
+        self.inhibitoryConnections.extend(neurons)
+        
+    def connect_excitatory_synapse(self, neurons:list):
+        self.excitatoryConnections.extend(neurons)
+
+    def generateMachineCode():
+        pass
+
+
 
 if __name__ == "__main__":
+    print(normalised32Bit(0.5))
     # Convert decimals to 32 bit integer representations
     # Generate List of integer values to store in memory
     # Convert integer list into hex list
