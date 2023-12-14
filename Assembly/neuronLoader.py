@@ -32,9 +32,6 @@ def generateMif(machineCode:list[str], filename:pathlib.Path):
 def normalised32Bit(num:float):
     return int(num*(pow(2,32))-1)
 
-class neuronGroup:
-    pass
-
 class neuron:
     excitatoryConnections = []
     inhibitoryConnections = []
@@ -95,7 +92,9 @@ class neuron:
     def get_delta(self):
         return self.delta
     
-
+    # Auto Set variables to a specific type of izhikevich neuron
+    def set_neuron_type(self, type):
+        pass
 
     def connect_inhibitory_synapse(self, neurons:list):
         self.inhibitoryConnections.extend(neurons)
@@ -105,7 +104,19 @@ class neuron:
 
     def generateMachineCode():
         pass
+class neuronPopulation:
+    def __init__(self, size:int, defaultParams:list):
+        # Generate neuron list
 
+        pass
+
+    def generateMachineCode():
+        pass
+    
+    pass
+
+def projection(pop1:neuronPopulation, pop2:neuronPopulation, connectionList:list, connectionType:str):
+    pass
 
 
 if __name__ == "__main__":
