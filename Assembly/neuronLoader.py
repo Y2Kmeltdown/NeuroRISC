@@ -45,6 +45,7 @@ class neuron:
                  b = 0, 
                  c = 0, 
                  d = 0):
+        #TODO initialise neuron with izhikevich stuff
         pass
 
     def set_index(self, value):
@@ -105,7 +106,7 @@ class neuron:
     def generateMachineCode():
         pass
 class neuronPopulation:
-    def __init__(self, size:int, defaultParams:list):
+    def __init__(self, size:int, defaultParams:list, type:str):
         # Generate neuron list
 
         pass
