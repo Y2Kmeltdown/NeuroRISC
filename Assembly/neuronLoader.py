@@ -94,7 +94,63 @@ class neuron:
         return self.delta
     
     # Auto Set variables to a specific type of izhikevich neuron
-    def set_neuron_type(self, type):
+    def set_neuron_type(self, type:str):
+        """
+        Used to set parameters of neuron to a specified value to exhibit specific types of neurons
+
+        Types of neurons available
+
+        rs - Regular Spiking
+
+        ib - Intrinsically Bursting
+
+        ch - Chattering
+
+        fs - Fast Spiking
+
+        tc - Thalamo-Cortical
+
+        rz - Resonator
+
+        lts - Low-THreshold Spiking
+        """
+        if type == "rs":
+            self.set_alpha(0.02)
+            self.set_bravo(0.2)
+            self.set_charlie(-65)
+            self.set_delta(8)
+        elif type == "ib":
+            self.set_alpha(0.02)
+            self.set_bravo(0.2)
+            self.set_charlie(-55)
+            self.set_delta(4)
+        elif type == "ch":
+            self.set_alpha(0.02)
+            self.set_bravo(0.2)
+            self.set_charlie(-50)
+            self.set_delta(2)
+        elif type == "fs":
+            self.set_alpha(0.1)
+            self.set_bravo(0.2)
+            self.set_charlie(-65)
+            self.set_delta(2)
+        elif type == "tc":
+            self.set_alpha(0.02)
+            self.set_bravo(0.25)
+            self.set_charlie(-65)
+            self.set_delta(0.05)
+        elif type == "rz":
+            self.set_alpha(0.1)
+            self.set_bravo(0.25)
+            self.set_charlie(-65)
+            self.set_delta(2)
+        elif type == "lts":
+            self.set_alpha(0.02)
+            self.set_bravo(0.25)
+            self.set_charlie(-65)
+            self.set_delta(2)
+        else:
+            raise Exception(f"No such type exists {type}. Refer to function docstring for available types")
         pass
 
     def connect_inhibitory_synapse(self, neurons:list):
@@ -117,7 +173,9 @@ class neuronPopulation:
     pass
 
 def projection(pop1:neuronPopulation, pop2:neuronPopulation, connectionList:list, connectionType:str):
+
     pass
+
 
 
 if __name__ == "__main__":

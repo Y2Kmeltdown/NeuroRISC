@@ -1,6 +1,6 @@
     /* memory address load routine | 2 Instructions */
     li      x8     256        /* Load data memory base address */
-    li      x9,    768        /* Load IO base address */
+    li      x9,    1280        /* Load IO base address */
 
     /* Izhikevich parameter Load Routine | 7 Instructions* */
     li      x18,    171798690   /* izhikevich 1 0.04*/
@@ -103,7 +103,7 @@
     lw   x14,   7(x4)   /* Load synapse data */
     bge  x6, x7, 16    /* Go to register counter incrementer TODO change jump range to bottom of routine*/
     nop
-    j   16
+    j   12
     nop
     addi x4, x4, 1 /* add 1 to register counter */
     addi x28, x28, 1 /* add 1 to synapse pointer */

@@ -4,8 +4,28 @@ This Github is separated into three main components, The RTL design which is wri
 
 ## HDL
 
+This section of the code can be found in the HDL directory of the repository. It contains all of the verilog and schematic files used to compile the NeuroRISC processor. All of the work was done on Quartus Prime 18.1 and the design was compiled and run on a Terasic DE10-Nano
 
 ### NeuroRISC
+
+The primary core design can be found in the NeuroRisc.bdf and NeuroRisc.v files. This is the file that describes the functional RISC V core that is used to perform the computations. The following files are submodules of this module.
+
+- alu.v
+- control_fsm.v
+- FivePortMux.v
+- imm_gen.v
+- instruction_reg.v
+- MDU.v
+- mem_size.v
+- memory_interface.v
+- programCounter.v
+- registerFile.v
+- TwoPortMux.v
+- writeback.v
+
+![image here]()
+
+The core is designed to conform to most of the RV32IM specifications excluding CSR instructions of RISC V which means it can perform all of the base instruction set and the multiply/divide extension. The intention of using this design is to provide a small and reprogrammable core that can efficiently emulate a spiking neural network using integer approximation.
 
 ### Memory Mapper
 
@@ -21,24 +41,24 @@ This Github is separated into three main components, The RTL design which is wri
 
 ## Assembly
 
-### 1
+### Memory address load Routine
 
-### 2
+### Izhikevich parameter Load Routine
 
-### 3
+### Memory Pointer initialization Routine
 
-### 4
+### Spiking neuron load Routine
 
-### 5
+### IO Read Routine
 
-### 6
+### Calculation Routine
 
-### 7
+### Spike Detection Routine
 
-### 8
+### Reset Neuron Routine
 
-### 9
+### Spike Emission Routine
 
-### 10
+### Spike Store Routine
 
-### 11
+### Change neuron Routine
