@@ -33,9 +33,103 @@ To interface the core with the outside world and maintain persistence across cyc
 
 ## Bootloader
 The supporting software for NeuroRISC consists of a custom built assembler, programmer and memory initialiser.
-All of these are written in python. RVassembler.py, RVprogrammer.py and neuronLoader.py can be found in the assembly directory of the repository.
+All of these are written in python. RVassembler.py, RVprogrammer.py and neuronLoader.py can be found in the Assembly directory of the repository.
 
 ### RISC V Assembler
+
+The RISC V assembler is designed to convert RISC V assembly code to RISC V binary machine code. To do this the following functions are used in python to interpret the asm file and generate the appropriate machine code.
+
+The assembler implements the argparse library so it can be used completely through command line using the command:
+
+```
+python RVassembler.py -b -m path/to/asm
+```
+
+The argument `-b` indicates that a raw binary file will be generated with the same name as the input file in the same directory.
+
+The argument `-m` indicates that a memory initialisation file will be generated with the same name as the input file in the same directory.
+
+#### Functions
+
+```python
+signExtendBinary
+binaryString:str, length:int
+return newVal
+```
+
+The `signExtendBinary` function takes in a string that can only consists of ones and zeros and extends the string by the value of the first character in the string to the input `length`. For example `binaryString = "1100"` and `length = 8` then the function would return `newVal = "11111100"`
+
+```python
+hexConvert
+value:str
+return hexVal
+```
+
+The `hexConvert` function
+
+```python
+getRegisterBinary
+stringValue:str
+return registerBinary
+```
+
+```python
+generateMachineCode
+parsedList:list[str]
+return mCodeList
+```
+
+```python
+genRTypeInst
+parsedList:list[str]
+return out
+```
+
+```python
+genITypeInst
+parsedList:list[str]
+return out
+```
+
+```python
+genSTypeInst
+parsedList:list[str]
+return out
+```
+
+```python
+genBTypeInst
+parsedList:list[str]
+return out
+```
+
+```python
+genUTypeInst
+parsedList:list[str]
+return out
+```
+
+```python
+genJTypeInst
+parsedList:list[str]
+return out
+```
+
+```python
+genPseudo
+parsedList:list[str]
+return mCodeList
+```
+
+```python
+generateMif
+machineCode:list[str], filename:pathlib.Path
+```
+
+```python
+generateHex
+machineCode:list[str], filename:pathlib.Path
+```
 
 ### NeuroRISC Programmer
 
