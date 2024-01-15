@@ -167,9 +167,19 @@ The function `generateHex` is used to generate a file of the raw binary data whi
 
 ### NeuroRISC Programmer
 
+The programmer for NeuroRISC is a relatively rudimentary implementation of UART communication. It is a python script that can be called with the command:
+
+```
+python RVProgrammer.py -p PORT path/to/bin
+```
+
+Where -p is an identifier for the port to send packets through. The script reads the binary file and adds a 32 bit address to each instruction and a header byte to each address and instruction. The address is added as the instruction is loaded into the processor asynchronously. The header is added to identify the start of a correct message and to differentiate between address and instruction. On the processor side the data is received a single bit at a time which is reconstructed into a byte then temporarily stored in a register until the full packet has been sent. Once a full instruction and address is sent the processor loads the instruction into memory at the correct address.
+
 ### NeuroRISC Memory Loader
 
 ## Assembly
+
+This section comprises most of the novel research on implementing spiking neural networks as close to physical hardware as possible using standard instructions found in the RV32IM instruction set. The file `izhikevichTM.asm` is a RISC V assembly program that is capable of simulating a small network of 64 neurons.
 
 ### Memory address load Routine
 

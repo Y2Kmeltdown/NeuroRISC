@@ -1,4 +1,5 @@
 import pathlib
+import random
 
 def hexConvert(value:str):
     hexVal = hex(int(value,2))[2:]
@@ -44,8 +45,20 @@ class neuron:
                  a = 0, 
                  b = 0, 
                  c = 0, 
-                 d = 0):
+                 d = 0,
+                 type = None):
         #TODO initialise neuron with izhikevich stuff
+        self.index = index
+        self.voltage = V
+        self.uVal = U
+        self.current = I
+        self.time = t
+        self.alpha = a
+        self.bravo = b
+        self.charlie = c
+        self.delta = d
+        if type is not None:
+            self.set_neuron_type(type)
         pass
 
     def set_index(self, value):
@@ -93,6 +106,16 @@ class neuron:
     def get_delta(self):
         return self.delta
     
+    def set_inhibit_conns(self, value):
+        self.inhibitoryConnections = value
+    def get_inhibit_conns(self):
+        return self.inhibitoryConnections
+    
+    def set_excite_conns(self, value):
+        self.excitatoryConnections = value
+    def get_excite_conns(self):
+        return self.excitatoryConnections
+
     # Auto Set variables to a specific type of izhikevich neuron
     def set_neuron_type(self, type:str):
         """
@@ -153,33 +176,49 @@ class neuron:
             raise Exception(f"No such type exists {type}. Refer to function docstring for available types")
         pass
 
-    def connect_inhibitory_synapse(self, neurons:list):
-        self.inhibitoryConnections.extend(neurons)
-        
-    def connect_excitatory_synapse(self, neurons:list):
-        self.excitatoryConnections.extend(neurons)
-
-    def generateMachineCode():
+    def generateMachineCode(self):
         pass
 class neuronPopulation:
-    def __init__(self, size:int, defaultParams:list, type:str):
+    def __init__(self, size:int, type:str):
         # Generate neuron list
+        self.neurons = [self.generateNeuron(a, type = type) for a in range(size)]
+        
 
-        pass
 
-    def generateMachineCode():
+    def generateNeuron(self, index:int, type:str):
+
+        genNeuron = neuron(index=index, type=type)
+
+        def generate_lists_with_seed(N, seed):
+            random.seed(seed)
+            list1 = [random.choice([0, 1]) for _ in range(N)]
+            random.seed(seed + 1)  # Change the seed for list2
+            list2 = [0 if val1 == 1 else random.choice([0, 1]) for val1 in list1]
+
+            return list1, list2
+        
+        excite, inhibit = generate_lists_with_seed(64, 42)
+        
+        genNeuron.set_excite_conns(excite)
+        genNeuron.set_inhibit_conns(inhibit)
+        return genNeuron
+    
+    def getNeuronPop(self):
+        return self.neurons
+
+    def generateMachineCode(self):
         pass
     
     pass
 
-def projection(pop1:neuronPopulation, pop2:neuronPopulation, connectionList:list, connectionType:str):
-
-    pass
 
 
 
 if __name__ == "__main__":
     print(normalised32Bit(0.5))
+
+    neuroPop = neuronPopulation(64, type='rs')
+    print(neuroPop.getNeuronPop()[63].get_index())
     # Convert decimals to 32 bit integer representations
     # Generate List of integer values to store in memory
     # Convert integer list into hex list
