@@ -1,6 +1,16 @@
 import pathlib
 import random
 
+def int_to_binary_sign_extended(value):
+    # Ensure the input is within the 32-bit signed integer range
+    if value < -2**31 or value > 2**31 - 1:
+        raise ValueError("Input value is out of range for a 32-bit signed integer")
+
+    # Convert to binary representation with sign extension
+    binary_string = format(value & 0xFFFFFFFF, '032b')
+
+    return binary_string
+
 def hexConvert(value:str):
     hexVal = hex(int(value,2))[2:]
     return "0"*(8-len(hexVal))+hexVal
@@ -177,6 +187,7 @@ class neuron:
         pass
 
     def generateMachineCode(self):
+        #
         pass
 class neuronPopulation:
     def __init__(self, size:int, type:str):
@@ -219,6 +230,9 @@ if __name__ == "__main__":
 
     neuroPop = neuronPopulation(64, type='rs')
     print(neuroPop.getNeuronPop()[63].get_index())
+
+    test = int_to_binary_sign_extended(255)
+    print(hexConvert(test))
     # Convert decimals to 32 bit integer representations
     # Generate List of integer values to store in memory
     # Convert integer list into hex list

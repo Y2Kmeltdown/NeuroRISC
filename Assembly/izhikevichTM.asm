@@ -11,12 +11,12 @@
     li      x23,    10          /* Current Injection */
     li      x24,    10          /* Time Value */
 
-    /* Memory Pointer initialization routine | 2 Instructions*/
+    /* Memory Pointer initialization routine | 3 Instructions*/
     addi      x2,   x8,    0       /* Load initial memory pointer location */
     addi      x3,   x8,    0       /* Load initial memory pointer location */
     addi      x4,   x8,    0       /* Load initial synapse pointer location */
     
-    /* Spiking neuron load routine | 11 instructions  modify this to load synapse variables  at execution time of synapse calculations*/
+    /* Spiking neuron load routine | 9 instructions  modify this to load synapse variables  at execution time of synapse calculations*/
     lw      x10,    0(x2)   /* load V */
     lw      x11,    1(x2)   /* load U */
     lw      x12,    2(x2)   /* load I */
@@ -28,12 +28,15 @@
     lw      x17,    6(x2)   /* load d & c */
     srai    x17,    x17,    16  /* right shift d & c to remove c and complete d load */
 
-    /*lw      x25,    7(x2)   /* load synapse A */
-    /*lw      x26,    8(x2)   /* load synapse B */
+    
     
 
 
-    /* IO Read Routine | 9 Instructions */
+    /* IO Read Routine | 11 Instructions */
+    li      x5,     0             /*Load a neuron index that is allowed to read inputs*/ 
+    bne     x2,     x5,     36    /*Skip input reading if condition isn't met*/
+    nop
+
     lw		x5, 	0(x9)		/* read spike IO */
     add     x12,    x5,     x0  /* accumulate spike io*/
 
@@ -48,7 +51,6 @@
 
     lw      x31,     5(x9)      /* read counter value  COULD Be a problem made counter 31 bits to account for sign problem*/
 
-
     /* Calculation Routine | 12 Instructions */
     mul     x6,     x10,    x10 /* v^2 */
     mulh    x6,     x6,     x18  /* 0.04*v^2 */
@@ -62,96 +64,75 @@
     sub     x7,     x7,     x11 /* bv -u */
     mulh    x7,     x7,     x14  /* a(bv -u) */
 
-    /* at this point we have x31 = current time, x13 = previous time, x6 = v', x7 = u', x10 = v, x11 = u*/
-    /* sub     x5,     x31,    x13 /* dt = t(n)-t(n-1) */
-
-    /* at this point we have x5 = dt, x6 = v', x7 = u', x10 = v, x11 = u*/
-    /* mul     x28,    x5,     x22 
-    /* mulh    x29,    x5,     x22 /* dt in no. of clocks past * clock period in uS = dt in uS */
-    /* mul     x6,     x6,     x5  /* dv = v'*dt */
-    /* mul     x7,     x7,     x5  /* du = v'*du */
-
-    /*  */
     add     x10,    x10,    x6  /* v(n+1) = v(n)+dv */
     add     x11,    x11,    x7  /* u(n+1) = u(n)+du */
-
-    /* Addition overflow check */
-    /* add     t0,     t1,     t2 */
-    /* slti    t3,     t2,     0 */
-    /* slt     t4,     t0,     t1 */
-    /* bne     t3,     t4,     overflow */
-    
-    /* Spike detection routine | 2 Instructions */
-    blt     x10,    x21,    40 /* if V is less than threshold skip instructions */
+ 
+    /* Spike Detection Routine | 2 Instructions */
+    blt     x10,    x21,    160 /* if V is less than threshold goto neuron store routine TODO change jump length */
     nop
+    /*add bit to top of value to indicate spike*/
+    lui     x5,     2147483648  /* Load a bit into the end of output spike*/
+    add     x5,     x5,     x2  /* add memory location */
+    sw      x5,     4(x9)       /* Store neuron memory location if neuron spiked
+    
 
     /* Reset Neuron Routine | 2 Instructions */
     add     x10,    x16,    x0 /* reset V to c */
     add     x11,    x11,    x17 /* increment U by d */
 
-
-
-    /* spike emission routine | 39 Instructions  Load neuron synapse variables here and overwrite a b c and d*/
+    /* Spike Emission Routine | 36 Instructions  Load neuron synapse variables here and overwrite a b c and d*/
     /* Count up neurons TODO sort out jump lengths*/
-    /* TODO automate synapse register changing */
-    addi x5, x0, 1     /* Initialise 1(spike) into temporary register*/
-    addi x6, x0, 0      /*Initialise counter*/
-    addi x7, x0, 32    /*Initialise end of counter*/
-    addi x28, x0, 0    /* Initialise register counter */
+    /* update to do both inhibit and excite registers simultaneously */
+    li      x28,    0    /* Initialise register counter */
+
+    li      x5,     1     /* Initialise 1(spike) into temporary register*/
+    li      x6,     0      /*Initialise counter*/
+    li      x7,     32    /*Initialise end of counter*/
     
+    lw      x14,    7(x4)   /* Load Excitatory synapse data */
+    lw      x15,    9(x4)   /* Load Inhibitory synapse data */
 
-    lw   x14,   7(x4)   /* Load synapse data */
-    bge  x6, x7, 16    /* Go to register counter incrementer TODO change jump range to bottom of routine*/
+        /*Register Change subroutine*/
+    blt     x6,     x7,     32    /* If counter hasn't reached 32 branch past register incrementer*/
     nop
-    j   12
-    nop
-    addi x4, x4, 1 /* add 1 to register counter */
-    addi x28, x28, 1 /* add 1 to synapse pointer */
-    
-    and x30, x14, x5 /* and operation of the spike output reg 1 to check if the first digit is 1*/
-    srli x14, x14, 1  /* Shift output reg 1 right by 1*/
-    addi x6, x6, 1  /* Add 1 to counter */
-    beq x30, x0, 24  /* skip spike storage if and operation results in 0*/
-    nop
+    addi    x4,     x4,     1 /* add 1 to synapse pointer */
+    addi    x28,    x28,    1 /* add 1 to register counter */
 
-    addi x29, x0, 2 /* set a check register to compare against register counter */
-    blt x28, x29, 12/*branch if counter less than 2 set excitatory or inhibitory*/
+    addi    x29,    x0,     2 /* set a check register to compare against register counter */
+    beq     x28,    x29,    104 /* branch if check register counter is equal to 2. This indicates all connections of the neuron have been updated branch to store neuron routine */
     nop
-    addi x15, x0, 0 /* set excitatory synapse */
-    j       4
-    nop
-    addi x15, x0, 1 /* set inhibitory synapse */
-
-    addi x29, x0, 5 /* set a check register to compare against register counter */
-    bge  x28, x29, 4 /* branch if counter is greater than or equal to 5 this will show all register values have been cycled through */
+    j       -48               /* Jump back to reinitialise counter */
     nop
     
-    beq     x15,    x0,     20
+        /*Check if there is a synapse connection */
+    and     x30,    x14,    x5 /* and operation between excitatory reg 1 and spike to check first digit*/
+    and     x31,    x15,    x5 /* and operation between inhibitory reg 1 and spike to check first digit*/
+    srli    x14,    x14,    1  /* Shift spike output reg N right by 1*/
+    srli    x15,    x15,    1  /* Shift spike output reg N right by 1*/
+    
+    or      x5,     x31,    x30 /* Check if either are 1 */
+    beq     x5,    x0,      40  /* jump to end of spike emmission if and operation results in 0*/
     nop
-    sub     x31,    x0,     x23
-    j       12
+
+    beq     x30,    x0,     20 /* Branch if connection is excitatory to skip subtraction step*/
+    nop
+    sub     x31,    x0,     x23 /* Invert the current data that will be sent to the next neuron to inhibit*/
+    j       12                  /* skip addition step */
     nop
     add     x31,    x0,     x23
     sw      x31,    2(x3) /* store current injection value */
 
     add     x13,    x13,    x24 /* add time injection into current time */
     sw      x13,    7(x3) /* store time value */
-    addi    x3,     x3,     8 /* increment spike memory pointer by 8 */
-    bne     x3,     x9,     -132 /* branch back to start of spike emission routine if memory pointer does not equal end of memory */
-    nop
-    addi    x3,     x8,     0       /* reset initial memory pointer location */
 
+    addi    x6,     x6,     1  /* Add 1 to counter */
+    addi    x3,     x3,     16  /* Add 1 to counter */
+    j       -120
     
-    
-    
-    /* Spike Store Routine | 12 Instructions */
-    beq     x13,    x0,     12 /* check if x13 is zero */
-    nop
-    addi    x13,    x13,    -1 /* subtract 1 from x13 */
-
+    /* Neuron Store Routine | 9 Instructions */
     sw      x10,    0(x2)   /* store V */
     sw      x11,    1(x2)   /* store U */
-    sw      x12,    2(x2)   /* store I NOTE is likely overwriting spikes that are recursively sent to itself*/
+    sw      x0,    2(x2)   /* store I NOTE is likely overwriting spikes that are recursively sent to itself*/
     sw      x13,    3(x2)   /* store t NOTE is likely overwriting spikes that are recursively sent to itself*/
     
     sw      x14,    4(x2)   /* store a*/
@@ -160,10 +141,12 @@
     add     x17,    x17,    x16 /* add c & d into single register where d is top 16 bits and c is bottom 16 bits */
     sw      x17,    6(x2)   /* store c & d */
 
-    /* Change neuron routine | 4 Instructions */
-    addi    x2,     x2,     16 /* increment spike memory pointer by 8 */
-    bne     x3,     x9,     -216 /* branch back to start of spike emission routine if memory pointer does not equal end of memory */
+    /* Change Neuron routine | 5 Instructions */
+    addi    x2,     x2,     16 /* increment spike memory pointer by 16 */
+    blt     x2,     x9,     12 /* branch back to start of spike emission routine if memory pointer does not equal end of memory */
     nop
-    addi    x3,     x8,     0       /* reset initial memory pointer location */
-    j       -224
+    addi    x2,     x8,     0    /*reset neuron pointer location */
+    addi    x3,     x8,     0    /* reset spike emmission pointer location */
+    sw      x0,     4(x9)        /*clear spike output*/
+    j       -332
     

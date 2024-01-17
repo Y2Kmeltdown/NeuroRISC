@@ -179,26 +179,54 @@ Where -p is an identifier for the port to send packets through. The script reads
 
 ## Assembly
 
-This section comprises most of the novel research on implementing spiking neural networks as close to physical hardware as possible using standard instructions found in the RV32IM instruction set. The file `izhikevichTM.asm` is a RISC V assembly program that is capable of simulating a small network of 64 neurons.
+This section comprises most of the novel research on implementing spiking neural networks as close to physical hardware as possible using standard instructions found in the RV32IM instruction set. The file `izhikevichTM.asm` is a RISC V assembly program that is capable of simulating a small network of 64 neurons. Each section of the assembly code is broken into routines and commented thoroughly. This section of the documentation will cover what each routine is doing to detail how the network operates on chip.
 
 ### Memory address load Routine
 
+The file starts with loading the memory starts into registers for easy access. The memory structure of the processor is as follows:
+
+- 0-255 is instruction memory
+- 256-1279 is data memory
+- 1280-1285 is IO
+
+In the code the data memory start and IO start are loaded.
+
 ### Izhikevich parameter Load Routine
+
+Like with any other code we start by loading constants that need to be used throughout the program. The very large values are actually 32 bit fixed point representations of decimals which is what makes integer representation of spiking neural networks possible. By multiplying the with these numbers and taking the top 32 bits of the multiplication you can perform division and multiplication in a single instruction and save cycles.
 
 ### Memory Pointer initialization Routine
 
+This section is used to initialise pointers which will move and collect data throughout memory. All three pointers are initialised at the start of data memory.
+
 ### Spiking neuron load Routine
+
+The start of spiking operations begins by fetching the neuron data for the first neuron in memory. Neurons are represented by 16 words in memory. Only 11 of those words are used and the other 5 are reserved to make the neuron unit evenly divisible in memory. The program starts by loading the Izhikevich parameters of the neuron from memory.
 
 ### IO Read Routine
 
+Next the neuron reads values from IO if it meets the criteria of the `bne` instruction. This essentially acts as a way to inject current into a neuron to cause excitation.
+
 ### Calculation Routine
+
+After the input data is summed the Izhikevich neuron can be calculated. All of the calculations are performed here and saved to the registers where the neuron information was loaded to initially.
 
 ### Spike Detection Routine
 
+After calculation the voltage is checked to determine if a spike has occurred in the neuron. If it has all the following routines are performed. If it hasn't, the program skips to the Neuron Store Routine.
+
 ### Reset Neuron Routine
+
+The Reset Neuron Routine is the last component of the Izhikevich model where the voltage is reset to resting threshold and the U value is incremented according to the Izhikevich model.
 
 ### Spike Emission Routine
 
-### Spike Store Routine
+This is the most complicated part of the model as it determines which neurons receive spikes from the current action potential of the neuron that is firing. This is accomplished by loading the excitatory and inhibitory connection registers from memory. Each neuron has 64 bits for excitatory connections and 64 bits for inhibitory connections. Each bit represents if the neuron has an excitatory or inhibitory connection to the corresponding neuron. As the network gets larger so does this data. The Emission routine starts by performing an and operation on the connection register and a register loaded with the value of 1. If the operation returns a 1 than the neuron at the current location of the emission pointer is connected. A right shift is performed on the connection register and the emission pointer is incremented to the next neuron in memory. The process is repeated until the end of memory is reached. If a neuron is found to be connected it is then checked if it is an inhibitory connection or excitatory connection. Finally the current data for the active neuron is written to the input of the next neuron.
 
-### Change neuron Routine
+### Neuron Store Routine
+
+The final stages of the neuron calculation is storing the information back in memory. zero is written back to the current storage as it is assumed that the current has already been accounted for and that location in memory is only used for input current.
+
+### Change Neuron Routine
+
+Finally the neuron pointer is incremented the spike output is cleared and the emission pointer is reset. In this stage if the neuron pointer exceeds the data memory it is reset to its initial location. The program then jumps back to Spiking Neuron Load routine and the process repeats forever.
