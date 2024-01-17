@@ -264,17 +264,8 @@ class neuronPopulation:
 
 if __name__ == "__main__":
     
-
     neuroPop = neuronPopulation(64, type='rs')
-    print(neuroPop.getNeuronPop()[63].generateMachineCode())
-
+    
     neuroPop.generateMachineCode()
 
-    test = int_to_binary_sign_extended(255)
-    
-    # Convert decimals to 32 bit integer representations
-    # Generate List of integer values to store in memory
-    # Convert integer list into hex list
-    # Pad Hex values to fit 32 bits
-    # Append Hex values to MIF format and save as a file
     pass
