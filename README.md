@@ -177,6 +177,10 @@ Where -p is an identifier for the port to send packets through. The script reads
 
 ### NeuroRISC Memory Loader
 
+The memory loader much like the programmer is a auxiliary program that is used to generate the memory initialisation file with the neural network that is going to execute on the processor. Each neuron of the network takes up 16 words and the program generates an abstract model for the neural network then it generates the appropriate memory data to be loaded onto the processor. To generate the model a class called `neuron` is used to generate individual neurons with parameters and a class called `neuronPopulation` is used to generate a group of interconnected `neuron` objects. for the purpose of testing the connections generated in a neuron population is randomised based on a seed of each neurons index and all neurons exhibit the regular spiking parameters of the izhikevich model.
+
+![image here]()
+
 ## Assembly
 
 This section comprises most of the novel research on implementing spiking neural networks as close to physical hardware as possible using standard instructions found in the RV32IM instruction set. The file `izhikevichTM.asm` is a RISC V assembly program that is capable of simulating a small network of 64 neurons. Each section of the assembly code is broken into routines and commented thoroughly. This section of the documentation will cover what each routine is doing to detail how the network operates on chip.

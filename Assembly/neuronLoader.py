@@ -11,6 +11,16 @@ def int_to_binary_sign_extended(value):
 
     return binary_string
 
+def int_to_binary_sign_extended16(value):
+    # Ensure the input is within the 32-bit signed integer range
+    if value < -2**15 or value > 2**15 - 1:
+        raise ValueError("Input value is out of range for a 16-bit signed integer")
+
+    # Convert to binary representation with sign extension
+    binary_string = format(value & 0xFFFF, '016b')
+
+    return binary_string
+
 def hexConvert(value:str):
     hexVal = hex(int(value,2))[2:]
     return "0"*(8-len(hexVal))+hexVal
@@ -29,7 +39,7 @@ def generateMif(machineCode:list[str], filename:pathlib.Path):
         outputLines.append(newLine)
         counter += 1
 
-    footer = f"\t[{padHex(counter)}..1FF]  :   00000000;\nEND;"
+    footer = f"END;"
     outputLines.append(footer)
 
     with open("neuronmif.txt") as templateF:
@@ -187,8 +197,30 @@ class neuron:
         pass
 
     def generateMachineCode(self):
-        #
-        pass
+        voltage = hexConvert(int_to_binary_sign_extended(self.voltage))
+        uVal = hexConvert(int_to_binary_sign_extended(self.uVal))
+        current = hexConvert(int_to_binary_sign_extended(self.current))
+        time = hexConvert(int_to_binary_sign_extended(self.time))
+        alpha = hexConvert(int_to_binary_sign_extended(normalised32Bit(self.alpha)))
+        bravo = hexConvert(int_to_binary_sign_extended(normalised32Bit(self.bravo)))
+        charlie = int_to_binary_sign_extended16(self.charlie)
+        delta = int_to_binary_sign_extended16(self.delta)
+        deltaCharlie = hexConvert(delta+charlie)
+        exciteConns = ''.join(list(map(str, self.excitatoryConnections)))
+        exciteConn1, exciteConn2 = exciteConns[:len(exciteConns)//2], exciteConns[len(exciteConns)//2:]
+        exciteConn1 = hexConvert(exciteConn1)
+        exciteConn2 = hexConvert(exciteConn2)
+        inhibitConns = ''.join(list(map(str, self.inhibitoryConnections)))
+        inhibitConn1, inhibitConn2 = inhibitConns[:len(inhibitConns)//2], inhibitConns[len(inhibitConns)//2:]
+        inhibitConn1 = hexConvert(inhibitConn1)
+        inhibitConn2 = hexConvert(inhibitConn2)
+        padding = ['00000000']*5
+        machineCodeList = [voltage,uVal,current,time,alpha,bravo,deltaCharlie,exciteConn1,exciteConn2,inhibitConn1,inhibitConn2] + padding
+        
+        
+
+        return machineCodeList
+        
 class neuronPopulation:
     def __init__(self, size:int, type:str):
         # Generate neuron list
@@ -208,7 +240,7 @@ class neuronPopulation:
 
             return list1, list2
         
-        excite, inhibit = generate_lists_with_seed(64, 42)
+        excite, inhibit = generate_lists_with_seed(64, index)
         
         genNeuron.set_excite_conns(excite)
         genNeuron.set_inhibit_conns(inhibit)
@@ -218,21 +250,28 @@ class neuronPopulation:
         return self.neurons
 
     def generateMachineCode(self):
-        pass
+        machineCodeList = []
+        
+        for neuron in self.neurons:
+            machineCodeList.extend(neuron.generateMachineCode())
+
+        generateMif(machineCodeList, pathlib.Path('neuronMem.mif'))
     
-    pass
+    
 
 
 
 
 if __name__ == "__main__":
-    print(normalised32Bit(0.5))
+    
 
     neuroPop = neuronPopulation(64, type='rs')
-    print(neuroPop.getNeuronPop()[63].get_index())
+    print(neuroPop.getNeuronPop()[63].generateMachineCode())
+
+    neuroPop.generateMachineCode()
 
     test = int_to_binary_sign_extended(255)
-    print(hexConvert(test))
+    
     # Convert decimals to 32 bit integer representations
     # Generate List of integer values to store in memory
     # Convert integer list into hex list
