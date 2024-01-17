@@ -75,9 +75,7 @@ value:str
 return hexVal
 ```
 
-The `hexConvert` function
-
-FIGURE OUT WHAT THIS DOES LMAO
+The `hexConvert` function takes a binary string and converts it to 32 bit hexadecimal.
 
 ```python
 getRegisterBinary
