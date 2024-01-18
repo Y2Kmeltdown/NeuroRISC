@@ -120,6 +120,8 @@
     j       12                  /* skip addition step */
     nop
     add     x31,    x0,     x23
+    /* TODO load current data */
+    /* TODO add x31 to current data */
     sw      x31,    2(x3) /* store current injection value */
 
     add     x13,    x13,    x24 /* add time injection into current time */

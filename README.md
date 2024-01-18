@@ -23,7 +23,7 @@ The primary core design can be found in the NeuroRisc.bdf and NeuroRisc.v files.
 - TwoPortMux.v
 - writeback.v
 
-![image here]()
+![Image 1 Structure of NeuroRISC Core](/images/NeuroRISC.png)
 
 The core is designed to conform to most of the RV32IM specifications excluding CSR instructions which means it can perform all of the base instruction set and the multiply/divide extension of RISC V. The intention of using this design is to provide a small and reprogrammable core that can efficiently emulate a spiking neural network using integer approximation. The design is simple and doesn't deviate from standard design patterns of RISC V cores. More information on the operation of RISC V can be found in the [RISC V Specification](https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf).
 
@@ -39,7 +39,7 @@ The following files are submodules of NeuroRISC_With_MEM.v
 - instr_mem.v
 - IODevice.v
 
-![image here]()
+![Image 2 Core with memory layout](/images/Core%20With%20Mem.png)
 
 ## Bootloader
 The supporting software for NeuroRISC consists of a custom built assembler, programmer and memory initialiser.
@@ -99,7 +99,9 @@ parsedList:list[str]
 return out
 ```
 
-The `genRTypeInst` function is used to generate the appropriate machine code out of an R type RISC V assembly instruction. For the format of an R type instruction refer to image X. The function takes in an assembly instruction that has been separated into a list of its tokens and then generates the binary data based on the data in each token. For example with an input of `parsedList = ['ADD', 'x1', 'x2', 'x0']` The function would return `out = '00000000000000010000000010110011'`
+The `genRTypeInst` function is used to generate the appropriate machine code out of an R type RISC V assembly instruction. For the format of an R type instruction refer to image 3. The function takes in an assembly instruction that has been separated into a list of its tokens and then generates the binary data based on the data in each token. For example with an input of `parsedList = ['ADD', 'x1', 'x2', 'x0']` The function would return `out = '00000000000000010000000010110011'`
+
+![Image 3 RISC V Specification](/images/Instruction%20Format.png)
 
 ```python
 genITypeInst
@@ -107,7 +109,7 @@ parsedList:list[str]
 return out
 ```
 
-The `genITypeInst` function is used to generate the appropriate machine code out of an I type RISC V assembly instruction. For the format of an I type instruction refer to image X. The function takes in an assembly instruction that has been separated into a list of its tokens and then generates the binary data based on the data in each token. For example with an input of `parsedList = ['ADDI', 'x5', 'x0', '1']` The function would return `out = '00000000000100000000001010010011'`
+The `genITypeInst` function is used to generate the appropriate machine code out of an I type RISC V assembly instruction. For the format of an I type instruction refer to image 3. The function takes in an assembly instruction that has been separated into a list of its tokens and then generates the binary data based on the data in each token. For example with an input of `parsedList = ['ADDI', 'x5', 'x0', '1']` The function would return `out = '00000000000100000000001010010011'`
 
 ```python
 genSTypeInst
@@ -115,7 +117,7 @@ parsedList:list[str]
 return out
 ```
 
-The `genSTypeInst` function is used to generate the appropriate machine code out of an S type RISC V assembly instruction. For the format of an S type instruction refer to image X. The function takes in an assembly instruction that has been separated into a list of its tokens and then generates the binary data based on the data in each token. For example with an input of `parsedList = ['LW', 'x1', '0', 'x0']` The function would return `out = '00000000000000000010000010000011'`
+The `genSTypeInst` function is used to generate the appropriate machine code out of an S type RISC V assembly instruction. For the format of an S type instruction refer to image 3. The function takes in an assembly instruction that has been separated into a list of its tokens and then generates the binary data based on the data in each token. For example with an input of `parsedList = ['LW', 'x1', '0', 'x0']` The function would return `out = '00000000000000000010000010000011'`
 
 ```python
 genBTypeInst
@@ -123,7 +125,7 @@ parsedList:list[str]
 return out
 ```
 
-The `genBTypeInst` function is used to generate the appropriate machine code out of an B type RISC V assembly instruction. For the format of an B type instruction refer to image X. The function takes in an assembly instruction that has been separated into a list of its tokens and then generates the binary data based on the data in each token. For example with an input of `parsedList = ['BLT', 'x10', 'x21', '40']` The function would return `out = '00000001010101010101010001100011'`
+The `genBTypeInst` function is used to generate the appropriate machine code out of an B type RISC V assembly instruction. For the format of an B type instruction refer to image 3. The function takes in an assembly instruction that has been separated into a list of its tokens and then generates the binary data based on the data in each token. For example with an input of `parsedList = ['BLT', 'x10', 'x21', '40']` The function would return `out = '00000001010101010101010001100011'`
 
 ```python
 genUTypeInst
@@ -131,7 +133,7 @@ parsedList:list[str]
 return out
 ```
 
-The `genUTypeInst` function is used to generate the appropriate machine code out of an U type RISC V assembly instruction. For the format of an U type instruction refer to image X. The function takes in an assembly instruction that has been separated into a list of its tokens and then generates the binary data based on the data in each token. For example with an input of `parsedList = ['LUI', 'x1', '200000']` The function would return `out = '00110000110101000000000010110111'`
+The `genUTypeInst` function is used to generate the appropriate machine code out of an U type RISC V assembly instruction. For the format of an U type instruction refer to image 3. The function takes in an assembly instruction that has been separated into a list of its tokens and then generates the binary data based on the data in each token. For example with an input of `parsedList = ['LUI', 'x1', '200000']` The function would return `out = '00110000110101000000000010110111'`
 
 ```python
 genJTypeInst
@@ -139,7 +141,7 @@ parsedList:list[str]
 return out
 ```
 
-The `genJTypeInst` function is used to generate the appropriate machine code out of an J type RISC V assembly instruction. For the format of an J type instruction refer to image X. The function takes in an assembly instruction that has been separated into a list of its tokens and then generates the binary data based on the data in each token. For example with an input of `parsedList = ['JAL', 'x1', '20']` The function would return `out = '00000000110000000000000011101111'`
+The `genJTypeInst` function is used to generate the appropriate machine code out of an J type RISC V assembly instruction. For the format of an J type instruction refer to image 3. The function takes in an assembly instruction that has been separated into a list of its tokens and then generates the binary data based on the data in each token. For example with an input of `parsedList = ['JAL', 'x1', '20']` The function would return `out = '00000000110000000000000011101111'`
 
 ```python
 genPseudo
@@ -176,8 +178,6 @@ Where -p is an identifier for the port to send packets through. The script reads
 ### NeuroRISC Memory Loader
 
 The memory loader much like the programmer is a auxiliary program that is used to generate the memory initialisation file with the neural network that is going to execute on the processor. Each neuron of the network takes up 16 words and the program generates an abstract model for the neural network then it generates the appropriate memory data to be loaded onto the processor. To generate the model a class called `neuron` is used to generate individual neurons with parameters and a class called `neuronPopulation` is used to generate a group of interconnected `neuron` objects. for the purpose of testing the connections generated in a neuron population is randomised based on a seed of each neurons index and all neurons exhibit the regular spiking parameters of the izhikevich model.
-
-![image here]()
 
 ## Assembly
 
