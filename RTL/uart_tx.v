@@ -19,7 +19,8 @@ module uart_tx
    input [7:0] i_Tx_Byte, 
    output      o_Tx_Active,
    output reg  o_Tx_Serial,
-   output      o_Tx_Done
+   output      o_Tx_Done,
+	output		o_Tx_Idle
    );
   
   parameter s_IDLE         = 3'b000;
@@ -34,6 +35,7 @@ module uart_tx
   reg [7:0]    r_Tx_Data     = 0;
   reg          r_Tx_Done     = 0;
   reg          r_Tx_Active   = 0;
+  reg				r_Tx_Idle	  = 0;
      
   always @(posedge i_Clock)
     begin
@@ -45,6 +47,7 @@ module uart_tx
             r_Tx_Done     <= 1'b0;
             r_Clock_Count <= 0;
             r_Bit_Index   <= 0;
+				r_Tx_Idle	  <= 1'b1;
              
             if (i_Tx_DV == 1'b1)
               begin
@@ -61,6 +64,7 @@ module uart_tx
         s_TX_START_BIT :
           begin
             o_Tx_Serial <= 1'b0;
+				r_Tx_Idle	<= 1'b0;
              
             // Wait CLKS_PER_BIT-1 clock cycles for start bit to finish
             if (r_Clock_Count < CLKS_PER_BIT-1)
@@ -80,6 +84,7 @@ module uart_tx
         s_TX_DATA_BITS :
           begin
             o_Tx_Serial <= r_Tx_Data[r_Bit_Index];
+				r_Tx_Idle	<= 1'b0;
              
             if (r_Clock_Count < CLKS_PER_BIT-1)
               begin
@@ -109,6 +114,7 @@ module uart_tx
         s_TX_STOP_BIT :
           begin
             o_Tx_Serial <= 1'b1;
+				r_Tx_Idle	<= 1'b0;
              
             // Wait CLKS_PER_BIT-1 clock cycles for Stop bit to finish
             if (r_Clock_Count < CLKS_PER_BIT-1)
@@ -130,6 +136,7 @@ module uart_tx
         s_CLEANUP :
           begin
             r_Tx_Done <= 1'b1;
+				r_Tx_Idle	<= 1'b0;
             r_SM_Main <= s_IDLE;
           end
          
@@ -142,5 +149,6 @@ module uart_tx
  
   assign o_Tx_Active = r_Tx_Active;
   assign o_Tx_Done   = r_Tx_Done;
+  assign o_Tx_Idle   = r_Tx_Idle;
    
 endmodule
