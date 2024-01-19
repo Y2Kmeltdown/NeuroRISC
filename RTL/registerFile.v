@@ -1,6 +1,7 @@
 module registerFile(
 	input					reset,
 	input					clk,
+	input					wren,
 	input		[4:0] 	writeAddress,
 	input		[4:0] 	readAddressA,
 	input		[4:0] 	readAddressB,
@@ -22,7 +23,7 @@ module registerFile(
 					registerFile[i] <= 0;
 				end
 			end
-		else begin
+		else if (wren) begin
 			if (writeAddress != 0)
 				registerFile[writeAddress] <= writeData;
 			end

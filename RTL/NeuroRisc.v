@@ -121,7 +121,8 @@ imm_gen	b2v_inst10(
 
 registerFile	b2v_inst11(
 	.reset(reset),
-	.clk(rd_clk),
+	.clk(CLK),
+	.wren(rd_clk),
 	.readAddressA(instr[19:15]),
 	.readAddressB(instr[24:20]),
 	.writeAddress(instr[11:7]),
