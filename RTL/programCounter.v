@@ -1,6 +1,7 @@
 module programCounter(
 	input 				reset,
 	input					clk,
+	input					wren,
 	input					pc_alu_sel,
 	input					pc_next_sel,
 	input		[31:0]	pc_imm,
@@ -29,7 +30,7 @@ module programCounter(
 		if (reset) begin
 			pc <= 32'b0;
 			end
-		else begin
+		else if (wren) begin
 			pc <= pc_to_reg;
 		end
 	end

@@ -1,6 +1,5 @@
 module instruction_reg(
 	input					clk,
-	input					wren,
 	input					reset,
 	input		[31:0]	instr_in,
 	output	[31:0]	instr_out
@@ -14,7 +13,7 @@ module instruction_reg(
 		if (reset) begin
 			instr <= 32'b0;
 		end
-		else if (wren) begin
+		else begin
 			instr <= instr_in;
 		end
 	end

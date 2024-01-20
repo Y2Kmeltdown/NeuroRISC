@@ -3,9 +3,9 @@ module UART_FIFO_req
 	input		clk,
 	input		idle,
 	input		empty,
-	output	wrreq
+	output	rdreq
 );
 
-	assign wrreq = clk&&idle&&!empty;
+	assign rdreq = clk&&idle&&!empty;
 	
 endmodule

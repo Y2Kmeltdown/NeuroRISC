@@ -183,7 +183,8 @@ MDU	b2v_inst2(
 
 programCounter	b2v_inst4(
 	.reset(reset),
-	.clk(pc_clk),
+	.clk(CLK),
+	.wren(pc_clk),
 	.pc_alu_sel(pc_alu_sel),
 	.pc_next_sel(pc_next_sel),
 	.pc_alu_in(pc_alu),
@@ -195,7 +196,8 @@ programCounter	b2v_inst4(
 
 
 instruction_reg	b2v_inst5(
-	.clk(insn_clk),
+	.clk(CLK),
+	.wren(insn_clk),
 	.reset(reset),
 	.instr_in(SYNTHESIZED_WIRE_16),
 	.instr_out(instr));

@@ -33,7 +33,8 @@ wire isJALR = 		(opcode == 7'b1100111);
 wire isBranch = 	(opcode == 7'b1100011);
 wire isLoad = 		(opcode == 7'b0000011);
 wire isStore = 	(opcode == 7'b0100011);
-wire isImmExe = 	(opcode == 7'b0010011);
+wire isImmExe = 	(opcode == 7'b0010011 && (funct3 != 3'b001 && funct3 != 3'b101));
+wire isImmExeS =  (opcode == 7'b0010011 && (funct3 == 3'b001 || funct3 == 3'b101));
 wire isExe = 		(opcode == 7'b0110011 && funct7[0] == 1'b0);
 wire isFence = 	(opcode == 7'b0001111);
 wire isEins = 		(opcode == 7'b1110011);
@@ -50,40 +51,40 @@ wire eqCheck =		(funct3 == 3'b000)	?	EQ			:
 
 assign sx_size = funct3;
 
-assign func = 	(isExe || isMul || isImmExe) ?  funct3 : 3'b000;
+assign func = 	(isExe || isMul || isImmExe || isImmExeS) ?  funct3 : 3'b000;
 
 assign reset = reset_in;
 
-assign sub_sra = isExe ? funct7[5] : 1'b0;
+assign sub_sra = (isExe|| isImmExeS) ? funct7[5] : 1'b0;
 
 assign rd_sel = 	(reset_in || isJAL || isJALR) 	?	3'b000	:
-					  ((isImmExe || isExe)					?	3'b001	:
+					  ((isImmExe || isExe || isImmExeS)	?	3'b001	:
 					  ((isLUI)									?	3'b010	:
 					  ((isLoad)									?	3'b011	:
 					  ((isMul)									?	3'b100	:
 																		3'b000
 																		))));
 																		
-assign alu_a_sel =	(reset_in || isLUI || isJALR || isBranch || isLoad || isStore || isImmExe || isExe || isMul)	?	1'b0	:
-						  ((isJAL || isAUIPC)																									?	1'b1	:
-																																							1'b0
-																																							);
+assign alu_a_sel =	(reset_in || isLUI || isJALR || isBranch || isLoad || isStore || isImmExe || isExe || isMul || isImmExeS)	?	1'b0	:
+						  ((isJAL || isAUIPC)																														?	1'b1	:
+																																												1'b0
+																																												);
 																																							
-assign alu_b_sel = 	(reset_in || isExe || isMul || isBranch)											?	1'b0	:
-						  ((isLUI || isAUIPC || isJAL || isJALR || isStore || isImmExe || isLoad)	?	1'b1	:
-																																1'b0
-																																);
+assign alu_b_sel = 	(reset_in || isExe || isMul || isBranch)															?	1'b0	:
+						  ((isLUI || isAUIPC || isJAL || isJALR || isStore || isImmExe || isImmExeS || isLoad)	?	1'b1	:
+																																				1'b0
+																																				);
 																													
-assign pc_next_sel = 	(reset_in || isLUI || isAUIPC || isBranch || isLoad || isStore || isImmExe || isExe || isMul) 	?	1'b0	:
-							  ((isJAL || isJALR)																											?	1'b1	:
-																																									1'b0	
-																																									);
+assign pc_next_sel = 	(reset_in || isLUI || isAUIPC || isBranch || isLoad || isStore || isImmExe || isImmExeS || isExe || isMul) 	?	1'b0	:
+							  ((isJAL || isJALR)																															?	1'b1	:
+																																													1'b0	
+																																													);
 
-assign pc_alu_sel = 		(isAUIPC)																												?	1'b0			:
-							  ((reset_in ||isLUI || isJAL || isJALR || isLoad || isStore || isImmExe || isExe || isMul)		?	1'b1			:
-							  ((isBranch)																												?	~eqCheck	:
-																																								1'b1
-																																								));
+assign pc_alu_sel = 		(isAUIPC)																																?	1'b0			:
+							  ((reset_in ||isLUI || isJAL || isJALR || isLoad || isStore || isImmExe || isImmExeS || isExe || isMul)		?	1'b1			:
+							  ((isBranch)																																?	~eqCheck	:
+																																												1'b1
+																																												));
 					
 assign mem_rd_clk = (isLoad) ? 1'b1 :1'b0;
 					
@@ -91,7 +92,7 @@ assign mem_rd_clk = (isLoad) ? 1'b1 :1'b0;
 always @(posedge clk or posedge reset_in) begin
 	if (reset_in) begin
 		rd_clk <= 1'b0;
-		ir_clk <= 1'b1;
+		ir_clk <= 1'b0;
 		pc_clk <= 1'b0;
 		mem_clk <= 1'b0;
 		
@@ -138,6 +139,12 @@ always @(posedge clk or posedge reset_in) begin
 		
 	end
 	else if (isImmExe) begin
+		ir_clk <= !ir_clk;
+		pc_clk <= !pc_clk;
+		rd_clk <= ~rd_clk;
+		
+	end
+	else if (isImmExeS) begin
 		ir_clk <= !ir_clk;
 		pc_clk <= !pc_clk;
 		rd_clk <= ~rd_clk;

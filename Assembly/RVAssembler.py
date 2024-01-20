@@ -151,9 +151,9 @@ instrType = {
     "xori": "I",
     "ori": "I",
     "andi": "I",
-    "slli": "I",
-    "srli": "I",
-    "srai": "I",
+    "slli": "R",
+    "srli": "R",
+    "srai": "R",
     "add": "R",
     "sub": "R",
     "sll": "R",
@@ -255,7 +255,10 @@ def genRTypeInst(parsedList:list[str]):
     func7 = instrFunct7[parsedList[0].lower()]
     rd = getRegisterBinary(parsedList[1])
     rs1 = getRegisterBinary(parsedList[2])
-    rs2 = getRegisterBinary(parsedList[3])
+    if len(parsedList[3]) > 1:
+        rs2 = getRegisterBinary(parsedList[3])
+    elif len(parsedList[3]) == 1:
+        rs2 = getRegisterBinary('x'+parsedList[3])
     out = func7+rs2+rs1+func3+rd+opcode
     return out
 
