@@ -26,9 +26,11 @@ module uart_tx
   parameter s_IDLE         = 3'b000;
   parameter s_TX_START_BIT = 3'b001;
   parameter s_TX_DATA_BITS = 3'b010;
-  parameter s_TX_STOP_BIT  = 3'b011;
-  parameter s_CLEANUP      = 3'b100;
-   
+  parameter s_TX_PARITY_BIT= 3'b011;
+  parameter s_TX_STOP_BIT  = 3'b100;
+  parameter s_CLEANUP      = 3'b101;
+  
+  
   reg [2:0]    r_SM_Main     = 0;
   reg [8:0]    r_Clock_Count = 0;
   reg [2:0]    r_Bit_Index   = 0;
@@ -103,11 +105,24 @@ module uart_tx
                   end
                 else
                   begin
-                    r_Bit_Index <= 0;
-                    r_SM_Main   <= s_TX_STOP_BIT;
+							r_Bit_Index <= 0;
+							r_SM_Main   <= s_TX_PARITY_BIT;
                   end
               end
           end // case: s_TX_DATA_BITS
+			 
+		  s_TX_PARITY_BIT :
+			begin
+				o_Tx_Serial <= ~^r_Tx_Data;
+				if (r_Clock_Count < CLKS_PER_BIT-1) begin
+					r_Clock_Count <= r_Clock_Count + 1;
+					r_SM_Main   <= s_TX_PARITY_BIT;
+					end
+				else begin
+					r_Clock_Count <= 0;
+					r_SM_Main   <= s_TX_STOP_BIT;
+					end
+				end
          
          
         // Send out Stop bit.  Stop bit = 1

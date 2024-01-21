@@ -58,7 +58,7 @@ class neuron:
     inhibitoryConnections = []
     def __init__(self, 
                  index = 0, 
-                 V = 0, 
+                 V = -65, 
                  U = 0, 
                  I = 0, 
                  t = 0, 

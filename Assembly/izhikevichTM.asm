@@ -8,7 +8,7 @@
     li      x20,    140         /* izhekevish 3 140*/
     li      x21,    30          /* Voltage Threshold vth*/
     li      x22,    85899344    /* CPU clock period */
-    li      x23,    10          /* Current Injection */
+    li      x23,    1           /* Current Injection */
     li      x24,    10          /* Time Value */
 
     /* Memory Pointer initialization routine | 3 Instructions*/
@@ -33,7 +33,7 @@
 
 
     /* IO Read Routine | 12 Instructions */
-    li      x5,     768           /*Load a neuron index that is allowed to read inputs*/ 
+    li      x5,     289           /*Load a neuron index that is allowed to read inputs*/ 
     blt     x2,     x5,     40    /*Skip input reading if condition isn't met*/
     nop
 
@@ -62,7 +62,7 @@
 
     mulh    x7,     x15,    x10 /* b*v */
     sub     x7,     x7,     x11 /* bv -u */
-    mulh    x7,     x7,     x14  /* a(bv -u) */
+    mulh    x7,     x7,     x14 /* a(bv -u) */
 
     add     x10,    x10,    x6  /* v(n+1) = v(n)+dv */
     add     x11,    x11,    x7  /* u(n+1) = u(n)+du */
@@ -143,5 +143,5 @@
     addi    x3,     x8,     0    /* reset spike emmission pointer location */
     addi    x4,     x8,     0    /* Reset Synapse pointer location */
     sw      x0,     4(x9)        /*clear spike output*/
-    j       -348 /* return to neuron load routine*/
+    j       -360 /* return to neuron load routine*/
     
