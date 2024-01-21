@@ -20,8 +20,7 @@ module uart_tx
    output      o_Tx_Active,
    output reg  o_Tx_Serial,
    output      o_Tx_Done,
-	output		o_Tx_Idle,
-	output [7:0] o_Clock_Count
+	output		o_Tx_Idle
    );
   
   parameter s_IDLE         = 3'b000;
@@ -31,7 +30,7 @@ module uart_tx
   parameter s_CLEANUP      = 3'b100;
    
   reg [2:0]    r_SM_Main     = 0;
-  reg [7:0]    r_Clock_Count = 0;
+  reg [8:0]    r_Clock_Count = 0;
   reg [2:0]    r_Bit_Index   = 0;
   reg [7:0]    r_Tx_Data     = 0;
   reg          r_Tx_Done     = 0;
@@ -150,7 +149,5 @@ module uart_tx
  
   assign o_Tx_Active = r_Tx_Active;
   assign o_Tx_Done   = r_Tx_Done;
-  assign o_Tx_Idle   = r_Tx_Idle;
-  assign o_Clock_Count = r_Clock_Count;
-   
+  assign o_Tx_Idle   = r_Tx_Idle;  
 endmodule

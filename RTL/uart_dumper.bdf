@@ -55,7 +55,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect -208 232 -40 248)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "wrreq" (rect 5 0 33 17)(font "Intel Clear" ))
+	(text "wrreq" (rect 5 0 32 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -161,46 +161,9 @@ refer to the applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 312 -24 464 88)
-	(text "UART_FIFO_req" (rect 65 0 147 12)(font "Arial" ))
-	(text "inst3" (rect 121 96 144 108)(font "Arial" ))
-	(port
-		(pt 152 32)
-		(input)
-		(text "clk" (rect 0 0 14 12)(font "Arial" ))
-		(text "clk" (rect 117 27 131 39)(font "Arial" ))
-		(line (pt 152 32)(pt 136 32))
-	)
-	(port
-		(pt 152 48)
-		(input)
-		(text "idle" (rect 0 0 16 12)(font "Arial" ))
-		(text "idle" (rect 115 43 131 55)(font "Arial" ))
-		(line (pt 152 48)(pt 136 48))
-	)
-	(port
-		(pt 152 64)
-		(input)
-		(text "empty" (rect 0 0 31 12)(font "Arial" ))
-		(text "empty" (rect 100 59 131 71)(font "Arial" ))
-		(line (pt 152 64)(pt 136 64))
-	)
-	(port
-		(pt 0 32)
-		(output)
-		(text "rdreq" (rect 0 0 24 12)(font "Arial" ))
-		(text "rdreq" (rect 21 27 41 39)(font "Arial" ))
-		(line (pt 0 32)(pt 16 32))
-	)
-	(drawing
-		(rectangle (rect 16 16 136 96))
-	)
-	(flipy)
-)
-(symbol
-	(rect 568 152 816 296)
+	(rect 568 152 784 264)
 	(text "uart_tx" (rect 5 0 39 12)(font "Arial" ))
-	(text "inst1" (rect 8 128 31 140)(font "Arial" ))
+	(text "inst1" (rect 8 96 31 108)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -223,39 +186,32 @@ refer to the applicable agreement for further details.
 		(line (pt 0 64)(pt 16 64)(line_width 3))
 	)
 	(port
-		(pt 248 32)
+		(pt 216 32)
 		(output)
 		(text "o_Tx_Active" (rect 0 0 61 12)(font "Arial" ))
-		(text "o_Tx_Active" (rect 176 27 227 39)(font "Arial" ))
-		(line (pt 248 32)(pt 232 32))
+		(text "o_Tx_Active" (rect 144 27 195 39)(font "Arial" ))
+		(line (pt 216 32)(pt 200 32))
 	)
 	(port
-		(pt 248 48)
+		(pt 216 48)
 		(output)
 		(text "o_Tx_Serial" (rect 0 0 56 12)(font "Arial" ))
-		(text "o_Tx_Serial" (rect 180 43 227 55)(font "Arial" ))
-		(line (pt 248 48)(pt 232 48))
+		(text "o_Tx_Serial" (rect 148 43 195 55)(font "Arial" ))
+		(line (pt 216 48)(pt 200 48))
 	)
 	(port
-		(pt 248 64)
+		(pt 216 64)
 		(output)
 		(text "o_Tx_Done" (rect 0 0 55 12)(font "Arial" ))
-		(text "o_Tx_Done" (rect 181 59 227 71)(font "Arial" ))
-		(line (pt 248 64)(pt 232 64))
+		(text "o_Tx_Done" (rect 149 59 195 71)(font "Arial" ))
+		(line (pt 216 64)(pt 200 64))
 	)
 	(port
-		(pt 248 80)
+		(pt 216 80)
 		(output)
 		(text "o_Tx_Idle" (rect 0 0 47 12)(font "Arial" ))
-		(text "o_Tx_Idle" (rect 188 75 227 87)(font "Arial" ))
-		(line (pt 248 80)(pt 232 80))
-	)
-	(port
-		(pt 248 96)
-		(output)
-		(text "o_Clock_Count[7..0]" (rect 0 0 101 12)(font "Arial" ))
-		(text "o_Clock_Count[7..0]" (rect 142 91 227 103)(font "Arial" ))
-		(line (pt 248 96)(pt 232 96)(line_width 3))
+		(text "o_Tx_Idle" (rect 156 75 195 87)(font "Arial" ))
+		(line (pt 216 80)(pt 200 80))
 	)
 	(parameter
 		"CLKS_PER_BIT"
@@ -263,9 +219,46 @@ refer to the applicable agreement for further details.
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 232 128))
+		(rectangle (rect 16 16 200 96))
 	)
 	(annotation_block (parameter)(rect 568 112 761 150))
+)
+(symbol
+	(rect 312 -24 472 88)
+	(text "UART_FIFO_req" (rect 73 0 155 12)(font "Arial" ))
+	(text "inst3" (rect 129 96 152 108)(font "Arial" ))
+	(port
+		(pt 160 32)
+		(input)
+		(text "clk" (rect 0 0 14 12)(font "Arial" ))
+		(text "clk" (rect 125 27 139 39)(font "Arial" ))
+		(line (pt 160 32)(pt 144 32))
+	)
+	(port
+		(pt 160 48)
+		(input)
+		(text "idle" (rect 0 0 16 12)(font "Arial" ))
+		(text "idle" (rect 123 43 139 55)(font "Arial" ))
+		(line (pt 160 48)(pt 144 48))
+	)
+	(port
+		(pt 160 64)
+		(input)
+		(text "empty" (rect 0 0 31 12)(font "Arial" ))
+		(text "empty" (rect 108 59 139 71)(font "Arial" ))
+		(line (pt 160 64)(pt 144 64))
+	)
+	(port
+		(pt 0 32)
+		(output)
+		(text "o_rdreq" (rect 0 0 36 12)(font "Arial" ))
+		(text "o_rdreq" (rect 21 27 51 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(drawing
+		(rectangle (rect 16 16 144 96))
+	)
+	(flipy)
 )
 (connector
 	(pt 272 216)
@@ -310,24 +303,12 @@ refer to the applicable agreement for further details.
 	(pt 312 8)
 )
 (connector
-	(pt 552 8)
-	(pt 464 8)
-)
-(connector
-	(pt 832 24)
-	(pt 464 24)
-)
-(connector
 	(pt 272 256)
 	(pt 512 256)
 )
 (connector
 	(pt 512 40)
 	(pt 512 256)
-)
-(connector
-	(pt 512 40)
-	(pt 464 40)
 )
 (connector
 	(pt 568 200)
@@ -358,16 +339,28 @@ refer to the applicable agreement for further details.
 	(pt -40 240)
 )
 (connector
-	(pt 816 200)
-	(pt 880 200)
-)
-(connector
-	(pt 816 232)
-	(pt 832 232)
-)
-(connector
 	(pt 832 232)
 	(pt 832 24)
+)
+(connector
+	(pt 880 200)
+	(pt 784 200)
+)
+(connector
+	(pt 784 232)
+	(pt 832 232)
+)
+(connector
+	(pt 512 40)
+	(pt 472 40)
+)
+(connector
+	(pt 552 8)
+	(pt 472 8)
+)
+(connector
+	(pt 832 24)
+	(pt 472 24)
 )
 (junction (pt 40 280))
 (junction (pt 552 88))

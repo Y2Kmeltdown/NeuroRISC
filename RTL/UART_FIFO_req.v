@@ -3,9 +3,23 @@ module UART_FIFO_req
 	input		clk,
 	input		idle,
 	input		empty,
-	output	rdreq
+	output	o_rdreq
 );
 
-	assign rdreq = clk&&idle&&!empty;
+	reg	r_rdreq;
+
+	always @(posedge clk)
+	begin
+		if (idle && ~empty) begin
+			r_rdreq <= 1'b1;
+		end
+		else begin
+			r_rdreq <= 1'b0;
+		end
+	end
+
 	
-endmodule
+	
+	assign o_rdreq = r_rdreq;
+	
+endmodule 
