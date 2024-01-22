@@ -4,7 +4,7 @@ comPort = "COM11"
 
 ser = serial.Serial(
         port = comPort,
-        baudrate=500000,
+        baudrate=250000,
         parity=serial.PARITY_ODD,
         stopbits=serial.STOPBITS_ONE,
         bytesize=serial.EIGHTBITS

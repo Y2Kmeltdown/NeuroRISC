@@ -8,7 +8,7 @@
     li      x20,    140         /* izhekevish 3 140*/
     li      x21,    30          /* Voltage Threshold vth*/
     li      x22,    85899344    /* CPU clock period */
-    li      x23,    1           /* Current Injection */
+    li      x23,    2           /* Current Injection */
     li      x24,    10          /* Time Value */
 
     /* Memory Pointer initialization routine | 3 Instructions*/
@@ -33,8 +33,8 @@
 
 
     /* IO Read Routine | 12 Instructions */
-    li      x5,     289           /*Load a neuron index that is allowed to read inputs*/ 
-    blt     x2,     x5,     40    /*Skip input reading if condition isn't met*/
+    li      x5,     321          /*Load a neuron index that is allowed to read inputs*/ 
+    bge     x2,     x5,     40    /*Skip input reading if condition isn't met*/
     nop
 
     lw		x5, 	0(x9)		/* read spike IO */
@@ -66,6 +66,9 @@
 
     add     x10,    x10,    x6  /* v(n+1) = v(n)+dv */
     add     x11,    x11,    x7  /* u(n+1) = u(n)+du */
+    /*blt     x0,     x11,    12  /* Branch past command if U is greater than 0 */
+    /*nop
+    /*addi    x11,    x0,     0   /* If U becomes negative reset back to 0 */
  
     /* Spike Detection Routine | 5 Instructions */
     blt     x10,    x21,    180 /* if V is less than threshold goto neuron store routine */
@@ -137,11 +140,12 @@
 
     /* Change Neuron routine | 7 Instructions */
     addi    x2,     x2,     16 /* increment spike memory pointer by 16 */
-    blt     x2,     x9,     12 /* branch past neuron pointer reset if not at end of memory */
+    addi    x4,     x4,     14 /* increment Synapse pointer by 14 to set it to next neuron */
+    blt     x2,     x9,     16 /* branch past neuron pointer reset if not at end of memory */
     nop
-    addi    x2,     x8,     0    /* reset neuron pointer location */
-    addi    x3,     x8,     0    /* reset spike emmission pointer location */
+    addi    x2,     x8,     0    /* Reset neuron pointer location */
     addi    x4,     x8,     0    /* Reset Synapse pointer location */
+    addi    x3,     x8,     0    /* reset spike emmission pointer location */
     sw      x0,     4(x9)        /*clear spike output*/
-    j       -360 /* return to neuron load routine*/
+    j       -364 /* return to neuron load routine*/
     

@@ -189,7 +189,7 @@ refer to the applicable agreement for further details.
 		(pt 0 32)
 		(output)
 		(text "o_rdreq" (rect 0 0 36 12)(font "Arial" ))
-		(text "o_rdreq" (rect 21 27 51 39)(font "Arial" ))
+		(text "o_rdreq" (rect 21 27 57 39)(font "Arial" ))
 		(line (pt 0 32)(pt 16 32))
 	)
 	(drawing
@@ -252,7 +252,7 @@ refer to the applicable agreement for further details.
 	)
 	(parameter
 		"CLKS_PER_BIT"
-		"100"
+		"200"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
