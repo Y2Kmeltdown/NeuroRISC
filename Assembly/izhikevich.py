@@ -1,29 +1,37 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import random
+import time
 
 v = -65
 u = 0
-I = 5
+I = 10
 
 a = 0.02
 b = 0.2
-c = -65
-d = 8
+c = -55
+d = 4
 
-vTime = [v]
-
+vData = [v]
+vTime = [time.perf_counter_ns()]
+t = time.perf_counter_ns()
 for n in range(1000):
-    vDash = 0.04*v**2 + 5*v + 140 - u + I
-    uDash = a*(b*v -u)
+    tNew = time.perf_counter_ns()
+    dt = tNew - t
+    dtsecs = dt*10**-9
 
-    v+=vDash
-    u+=uDash
-    vTime.append(v)
+    dv = 0.04*v**2 + 5*v + 140 - u + I
+    du = a*(b*v -u)
+    
 
+    v+=dv
+    u+=du
+
+    vData.append(v)
+    vTime.append(time.perf_counter_ns())
     if v >= 30:
         v = c
         u+=d
+    t = tNew
 
-plt.plot(vTime)
+plt.plot(vTime, vData)
 plt.show()

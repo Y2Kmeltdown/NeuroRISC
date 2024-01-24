@@ -1,11 +1,11 @@
-    li      x26,    768        /* Load IO base address */
+    li      x26,    1280        /* Load IO base address */
     li      x27     256
 
     /* Load Routine*/
-    li      x18,    85899344    /* a 0.02*/
+    li      x18,    429496728    /* a 0.02*/
     li      x19,    858993458   /* b 0.2*/
-    li      x20,    -55         /* c */
-    li      x21,    4           /* d */
+    li      x20,    -65         /* c */
+    li      x21,    2           /* d */
 
     li      x22,    171798690   /* izhikevich 1 */
     li      x23,    5           /* izhikevich 2 */

@@ -3,11 +3,11 @@ import pandas as pd
 import os
 
 
-filename = "C:\\Users\\damie\\Documents\\Coding Projects\\Verilog\\NeuroRISC\\Project Working Directory\\izhikevich50mhz10.csv"
+filename = "C:\\Users\\damie\\Documents\\Coding Projects\\Verilog\\NeuroRISC\\Results Data\\izhikevichRegularSpiking5Stimulus.csv"
 
 cur_path = os.path.dirname(__file__)
 
-outputfiles = os.path.relpath('..\\Project Working Directory', cur_path)
+outputfiles = os.path.relpath('Results Data')
 
 outputlist = os.listdir(outputfiles)
 
@@ -17,7 +17,7 @@ file = filename
 print(file)
 df = pd.read_csv(
     file,
-    header=10,
+    header=11,
     low_memory=False
 )
 df = df.drop([0])
@@ -30,11 +30,12 @@ membraneData = df.filter(items=[" NeuroRISC_With_MEM:inst|Memory_Mapper:inst1|i_
 
 #print(membraneData)
 membraneDataFiltered = membraneData.loc[membraneData[" NeuroRISC_With_MEM:inst|Memory_Mapper:inst1|i_proc_data_addr[31..0]"] == " 257"," NeuroRISC_With_MEM:inst|Memory_Mapper:inst1|i_proc_data_in[31..0]"]
+print(membraneDataFiltered)
 membraneDataFiltered = membraneDataFiltered.astype("int32")
 
 
 timeData = membraneData.loc[membraneData[" NeuroRISC_With_MEM:inst|Memory_Mapper:inst1|i_proc_data_addr[31..0]"] == " 257","time unit: ns"]
-timeData = timeData.astype("int32")
+timeData = timeData.astype("uint32")
 
 p = plt.plot(timeData.values,membraneDataFiltered.values)
 plt.title("Spike Train with current input")
