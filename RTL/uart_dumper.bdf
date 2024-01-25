@@ -55,7 +55,7 @@ refer to the applicable agreement for further details.
 	(input)
 	(rect -208 208 -40 224)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "data_in[7..0]" (rect 5 0 67 12)(font "Arial" ))
+	(text "data_in[7..0]" (rect 5 0 66 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -119,69 +119,6 @@ refer to the applicable agreement for further details.
 		(rectangle (rect 16 16 144 96))
 	)
 	(flipy)
-)
-(symbol
-	(rect 568 152 784 264)
-	(text "uart_tx" (rect 5 0 39 12)(font "Arial" ))
-	(text "inst1" (rect 8 96 31 108)(font "Arial" ))
-	(port
-		(pt 0 32)
-		(input)
-		(text "i_Clock" (rect 0 0 36 12)(font "Arial" ))
-		(text "i_Clock" (rect 21 27 57 39)(font "Arial" ))
-		(line (pt 0 32)(pt 16 32))
-	)
-	(port
-		(pt 0 48)
-		(input)
-		(text "i_Tx_DV" (rect 0 0 42 12)(font "Arial" ))
-		(text "i_Tx_DV" (rect 21 43 63 55)(font "Arial" ))
-		(line (pt 0 48)(pt 16 48))
-	)
-	(port
-		(pt 0 64)
-		(input)
-		(text "i_Tx_Byte[7..0]" (rect 0 0 75 12)(font "Arial" ))
-		(text "i_Tx_Byte[7..0]" (rect 21 59 96 71)(font "Arial" ))
-		(line (pt 0 64)(pt 16 64)(line_width 3))
-	)
-	(port
-		(pt 216 32)
-		(output)
-		(text "o_Tx_Active" (rect 0 0 61 12)(font "Arial" ))
-		(text "o_Tx_Active" (rect 144 27 195 39)(font "Arial" ))
-		(line (pt 216 32)(pt 200 32))
-	)
-	(port
-		(pt 216 48)
-		(output)
-		(text "o_Tx_Serial" (rect 0 0 56 12)(font "Arial" ))
-		(text "o_Tx_Serial" (rect 148 43 195 55)(font "Arial" ))
-		(line (pt 216 48)(pt 200 48))
-	)
-	(port
-		(pt 216 64)
-		(output)
-		(text "o_Tx_Done" (rect 0 0 55 12)(font "Arial" ))
-		(text "o_Tx_Done" (rect 149 59 195 71)(font "Arial" ))
-		(line (pt 216 64)(pt 200 64))
-	)
-	(port
-		(pt 216 80)
-		(output)
-		(text "o_Tx_Idle" (rect 0 0 47 12)(font "Arial" ))
-		(text "o_Tx_Idle" (rect 156 75 195 87)(font "Arial" ))
-		(line (pt 216 80)(pt 200 80))
-	)
-	(parameter
-		"CLKS_PER_BIT"
-		"200"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(drawing
-		(rectangle (rect 16 16 200 96))
-	)
-	(annotation_block (parameter)(rect 568 112 761 150))
 )
 (symbol
 	(rect 88 168 264 336)
@@ -259,6 +196,69 @@ refer to the applicable agreement for further details.
 		(line (pt 0 0)(pt 0 0))
 		(line (pt 0 0)(pt 0 0))
 	)
+)
+(symbol
+	(rect 568 152 784 264)
+	(text "uart_tx" (rect 5 0 39 12)(font "Arial" ))
+	(text "inst1" (rect 8 96 31 108)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "i_Clock" (rect 0 0 36 12)(font "Arial" ))
+		(text "i_Clock" (rect 21 27 57 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "i_Tx_DV" (rect 0 0 42 12)(font "Arial" ))
+		(text "i_Tx_DV" (rect 21 43 63 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "i_Tx_Byte[7..0]" (rect 0 0 75 12)(font "Arial" ))
+		(text "i_Tx_Byte[7..0]" (rect 21 59 96 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 216 32)
+		(output)
+		(text "o_Tx_Active" (rect 0 0 61 12)(font "Arial" ))
+		(text "o_Tx_Active" (rect 144 27 205 39)(font "Arial" ))
+		(line (pt 216 32)(pt 200 32))
+	)
+	(port
+		(pt 216 48)
+		(output)
+		(text "o_Tx_Serial" (rect 0 0 56 12)(font "Arial" ))
+		(text "o_Tx_Serial" (rect 148 43 204 55)(font "Arial" ))
+		(line (pt 216 48)(pt 200 48))
+	)
+	(port
+		(pt 216 64)
+		(output)
+		(text "o_Tx_Done" (rect 0 0 55 12)(font "Arial" ))
+		(text "o_Tx_Done" (rect 149 59 204 71)(font "Arial" ))
+		(line (pt 216 64)(pt 200 64))
+	)
+	(port
+		(pt 216 80)
+		(output)
+		(text "o_Tx_Idle" (rect 0 0 47 12)(font "Arial" ))
+		(text "o_Tx_Idle" (rect 156 75 203 87)(font "Arial" ))
+		(line (pt 216 80)(pt 200 80))
+	)
+	(parameter
+		"CLKS_PER_BIT"
+		"434"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 200 96))
+	)
+	(annotation_block (parameter)(rect 568 112 761 150))
 )
 (connector
 	(pt 40 88)

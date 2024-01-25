@@ -13,7 +13,7 @@
 
     li      x25,    30          /* Voltage Threshold */
 
-    li	    x10,    -55	        /* V */
+    li	    x10,    -65	        /* V */
     li	    x11,	0	        /* U */
     li      x12,    0           /* I */
 

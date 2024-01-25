@@ -8,7 +8,7 @@
     li      x20,    140         /* izhekevish 3 140*/
     li      x21,    30          /* Voltage Threshold vth*/
     li      x22,    85899344    /* CPU clock period */
-    li      x23,    4           /* Current Injection */
+    li      x23,    10          /* Current Injection */
     li      x24,    10          /* Time Value */
 
     /* Memory Pointer initialization routine | 3 Instructions*/
@@ -33,7 +33,7 @@
 
 
     /* IO Read Routine | 12 Instructions */
-    li      x5,     321          /*Load a neuron index that is allowed to read inputs*/ 
+    li      x5,     1265          /*Load a neuron index that is allowed to read inputs*/ 
     bge     x2,     x5,     40    /*Skip input reading if condition isn't met*/
     nop
 
@@ -71,17 +71,17 @@
     /*addi    x11,    x0,     0   /* If U becomes negative reset back to 0 */
  
     /* Spike Detection Routine | 5 Instructions */
-    blt     x10,    x21,    208 /* if V is less than threshold goto neuron store routine */
+    blt     x10,    x21,    192 /* if V is less than threshold goto neuron store routine */
     nop
     li      x25,     2147483648  /* Load a bit into the end of output spike*/
-    add     x5,     x5,     x2  /* add memory location */
+    add     x5,     x2,     x0  /* add memory location */
     srai    x5,     x5,     4   /* Shift address by 16 because pointer increments by 16 */
 
     addi    x5,     x5,     -16 /* Subtract 16 from address */
-    slli    x26,    x13,    13 /* Shift left so we only have 18:0 of time*/
-    srli    x26,    x26,    27 /* Shift right so we only have 18:14 of time*/
-    slli    x26,    x26,    4 /* Shift left so 18:14 of time is in the 8:4 of the output */
-    add     x5,     x5,     x26
+    /*slli    x26,    x13,    13 /* Shift left so we only have 18:0 of time*/
+    /*srli    x26,    x26,    27 /* Shift right so we only have 18:14 of time*/
+    /*slli    x26,    x26,    4 /* Shift left so 18:14 of time is in the 8:4 of the output */
+    /*add     x5,     x5,     x26*/
     add     x5,     x5,     x25
 
     sw      x5,     4(x9)       /* Store neuron memory location if neuron spiked */
@@ -156,5 +156,5 @@
     addi    x2,     x8,     0    /* Reset neuron pointer location */
     addi    x4,     x8,     0    /* Reset Synapse pointer location */
     addi    x3,     x8,     0    /* reset spike emmission pointer location */
-    j       -388 /* return to neuron load routine*/
+    j       -372 /* return to neuron load routine*/
     
